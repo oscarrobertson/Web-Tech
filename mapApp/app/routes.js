@@ -1,4 +1,4 @@
-var MapMaker = require('../node_modules/mapMaker/mapMaker');
+var MapMaker = require('../modules/mapMaker/mapMaker');
 
 module.exports = function(app) {
 
