@@ -1,18 +1,26 @@
 angular.module('MainCtrl', []).controller('MainController', function($scope, $http) {
 
-	$scope.tagline = 'To the moon and back!';	
-	$scope.togline = 'To the moon and around!';
+	$scope.tagline = 'Enter UK OS map coordinates for the lower left corner of the square region you want to see!';	
+	$scope.togline = "";
 	$scope.dataLength = 1000;
 	$scope.map = [];
 	$scope.do = function(){
 		$scope.togline = 'working...';
 		var xll = document.getElementById("xll_input").value;
+		xll = Math.round(xll/100)*100;
 		var yll = document.getElementById("yll_input").value;
+		yll = Math.round(yll/100)*100;
 		var side = document.getElementById("side_input").value;
+		side = Math.round(side/100)*100;
+		var ds = document.getElementById("ds_input").value;
+
+		var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side;
+		if (!(ds == "")) {
+			requestString += '&ds=' + ds;
+		}
 		$http({
 		  method: 'GET',
-		  //url: 'http://localhost:8080/api/map?xll=380000&yll=350000&side=50000'
-		  url: 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side
+		  url: requestString
 		}).then(function successCallback(response) {
 			console.log("API success");
 		    // this callback will be called asynchronously
@@ -31,17 +39,12 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 					$scope.map.push(temp);
 				}
 			}
-			console.log("done array")
 
-			console.log("starting ready")
 			var image = document.getElementById('i');
-			console.log("found")
 			//display image only after it's loaded
 			image.onload = function(){this.style.display='block'}.bind(image);
-			console.log("shown")
 			//and finally set the .src
 			image.src = dataToBase64($scope.map, dataLength, dataLength);
-			console.log("done all")
 
 		  }, function errorCallback(response) {
 		    // called asynchronously if an error occurs

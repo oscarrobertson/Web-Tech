@@ -161,14 +161,61 @@ function refineDataArray(dataArray, xll, yll, width){
     return refinedOutput;
 }
 
-function refineDataArray2(dataArray, xll, yll, width){
-    // the ll coord of the whole input square
-    var squareXll = parseInt(xll/REGION_WIDTH)*REGION_WIDTH;
-    var squareYll = parseInt(yll/REGION_WIDTH)*REGION_WIDTH;
-
-
+// transposes 2D array
+function transpose(array){
+    var transposeOutput = [];
+    var newRow = [];
+    for (Ti = 0; Ti <  array[0].length; Ti++){
+        newRow = [];
+        for (Tj = 0; Tj < array.length; Tj++) {
+            newRow.push(array[Tj][Ti]);
+        }
+        transposeOutput.push(newRow);
+    }
+    return transposeOutput;
 }
 
+// takes a 1D array and a float index
+// returns float vaule of linear estimation of index
+function advancedIndex(arrayToEstimate,index){
+    // floor
+    var left = parseInt(index);
+    var right = left + 1;
+    var fraction = index - left;
+    if (right == arrayToEstimate.length){
+        return arrayToEstimate[left];
+    }
+    var difference = arrayToEstimate[right] - arrayToEstimate[left];
+    return arrayToEstimate[left] + difference*fraction;
+}
+
+function lengthenArray(arrayIn, outputLength){
+    var step = (arrayIn.length - 1)/(outputLength - 1);
+    var output = [];
+    var k = 0;
+    for (Li = 0; Li < outputLength; Li++){
+        output.push(k);
+        k += step;
+    }
+    for (Li = 0; Li < output.length; Li++){
+        output[Li] = parseInt(Math.round(advancedIndex(arrayIn, output[Li])))
+    }
+    return output;
+}
+
+function resizeArray(array, width) {
+    var temp = transpose(array);
+    var temp2 = [];
+    var resizeOut = [];
+    for (Ri = 0; Ri < temp.length; Ri++){
+        temp2.push(lengthenArray(temp[Ri], width));
+    }
+    temp2 = transpose(temp2);
+    for (Ri = 0; Ri < temp2.length; Ri++){
+        resizeOut.push(lengthenArray(temp2[Ri], width));
+    }
+    return resizeOut;
+}
 
 function applyOverallContrast(data){
     return applyContrast(data,-120,1346);
@@ -185,14 +232,13 @@ function applyContrast(data, minimum, maximum){
     return output;
 }
 
-// var regions = findRegions(360000, 170000, 10000);
-// createDataArray(regions);
 
 var MakeMap = function() {
 
 };
 
-MakeMap.prototype.create = function(x,y,w) {
+// desiredSize is optional
+MakeMap.prototype.create = function(x,y,w,desiredSize) {
     // build list of coordinates where the data lies
     var regions = findRegions(x,y,w);
 
@@ -200,15 +246,17 @@ MakeMap.prototype.create = function(x,y,w) {
     var dataArray = createDataArray(regions);
 
     // refine array to just data included in the request
-    var dataArray2 = refineDataArray(dataArray, x, y, w);
+    var dataArray = refineDataArray(dataArray, x, y, w);
 
     // resize the array to the output size
-    //dataArray = resizeArray(dataArray,desiredSize);
+    if (!(typeof desiredSize === 'undefined')){
+        dataArray = resizeArray(dataArray,desiredSize);
+    }
 
     // apply contrast
-    var dataArray3 = applyOverallContrast(dataArray2);
+    var dataArray = applyOverallContrast(dataArray);
 
-    return dataArray3;
+    return dataArray;
 };
 
 

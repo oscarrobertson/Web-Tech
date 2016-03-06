@@ -13,9 +13,13 @@ module.exports = function(app) {
 			var xll = parseInt(req.query.xll);
 			var yll = parseInt(req.query.yll);
 			var side = parseInt(req.query.side);
+			var desiredSize = undefined;
+			if (req.query.hasOwnProperty('ds')){
+				desiredSize = parseInt(req.query.ds);
+			}
 
             var mapMaker = new MapMaker();
-    		var output = mapMaker.create(xll, yll, side);
+    		var output = mapMaker.create(xll, yll, side, desiredSize);
     		res.json({ message: output });
         });
 
