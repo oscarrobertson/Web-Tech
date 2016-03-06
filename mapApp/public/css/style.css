@@ -1,1 +1,6 @@
 body { padding-top:30px; }
+
+#map-canvas {
+    height: 500px;
+    width: 1000px;
+}

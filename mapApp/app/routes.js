@@ -1,4 +1,6 @@
 var MapMaker = require('../modules/mapMaker/mapMaker');
+var OsGridRef = require('../modules/conv/osgridref');
+var LLEllip = require('../modules/conv/latlon-ellipsoidal');
 var fs = require('fs');
 
 module.exports = function(app) {
@@ -35,6 +37,34 @@ module.exports = function(app) {
     		var img = fs.readFileSync('./modules/mapMaker/mapPngs/' + z +'/' + x +'/'+ y + '.png');
 			res.writeHead(200, {'Content-Type': 'image/png' });
 			res.end(img, 'binary');
+        });
+
+	// outputs obj with .easting and .northing
+	app.get('/api/latLonToOsGrid', function(req, res) {
+			console.log(req.query);
+			// sanity check on input should be done
+
+			var lat = parseInt(req.query.lat);
+			var lon = parseInt(req.query.lon);
+
+			console.log(LLEllip);
+
+			var t1 = OsGridRef.latLonToOsGrid(new LLEllip.LatLon(lat, lon));
+
+			res.json({ easting : t1.easting, northing : t1.northing});
+        });
+
+	// outputs obj with .lat and .lon
+	app.get('/api/osGridToLatLon', function(req, res) {
+			console.log(req.query);
+			// sanity check on input should be done
+
+			var northing = parseInt(req.query.northing);
+			var easting = parseInt(req.query.easting);
+
+			t1 = OsGridRef.OsGridRef.osGridToLatLon(new OsGridRef(easting, northing));
+
+			res.json({ lat : t1.lat, lon : t1.lon});
         });
 
 	// frontend routes =========================================================

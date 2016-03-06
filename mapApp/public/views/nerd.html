@@ -1,5 +1,20 @@
-<div class="jumbotron text-center">
+<!-- <div class="jumbotron text-center"> -->
 	<h1>Window 2</h1>
 
 	<p>{{ tagline }}</p>
-</div>
+
+	<div id='wrapper'>
+    	<nav class="navbar navbar-default" id="navigation-bar">
+			<div class="container-fluid">
+				<a class="navbar-brand" href="#">UK Heightmap Generator</a>
+				<div class="btn-group" id="plusminusgroup" role="group">
+				  	<button type="button" class="btn btn-default customWidth" id="plusBtn">+</button>
+				  	<button type="button" class="btn btn-default customWidth" id="minusBtn">-</button>
+				  	<button type="button" class="btn btn-info" id='square-size-display'>18km</span>
+				</div>
+				<button type="button" class="btn btn-default" id="export">Export Map</button>
+			</div>
+		</nav>
+		<div id='map-canvas'></div>
+	</div>
+<!-- </div> -->
