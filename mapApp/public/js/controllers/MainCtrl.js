@@ -22,7 +22,6 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		  method: 'GET',
 		  url: requestString
 		}).then(function successCallback(response) {
-			console.log("API success");
 		    // this callback will be called asynchronously
 		    // when the response is available
 		    //$scope.map = response.data.message;
@@ -49,7 +48,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		  }, function errorCallback(response) {
 		    // called asynchronously if an error occurs
 		    // or server returns response with an error status.
-		    console.log("API failure");
+		    console.log("API failure - map");
 		});
 	};
 

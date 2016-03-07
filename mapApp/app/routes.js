@@ -1,6 +1,6 @@
 var MapMaker = require('../modules/mapMaker/mapMaker');
 var OsGridRef = require('../modules/conv/osgridref');
-var LLEllip = require('../modules/conv/latlon-ellipsoidal');
+var LatLon = require('../modules/conv/latlon-ellipsoidal');
 var fs = require('fs');
 
 module.exports = function(app) {
@@ -44,12 +44,10 @@ module.exports = function(app) {
 			console.log(req.query);
 			// sanity check on input should be done
 
-			var lat = parseInt(req.query.lat);
-			var lon = parseInt(req.query.lon);
+			var lat = parseFloat(req.query.lat);
+			var lon = parseFloat(req.query.lon);
 
-			console.log(LLEllip);
-
-			var t1 = OsGridRef.latLonToOsGrid(new LLEllip.LatLon(lat, lon));
+			var t1 = OsGridRef.latLonToOsGrid(new LatLon(lat, lon));
 
 			res.json({ easting : t1.easting, northing : t1.northing});
         });
@@ -59,13 +57,36 @@ module.exports = function(app) {
 			console.log(req.query);
 			// sanity check on input should be done
 
-			var northing = parseInt(req.query.northing);
-			var easting = parseInt(req.query.easting);
+			var northing = parseFloat(req.query.northing);
+			var easting = parseFloat(req.query.easting);
 
-			t1 = OsGridRef.OsGridRef.osGridToLatLon(new OsGridRef(easting, northing));
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting, northing));
 
 			res.json({ lat : t1.lat, lon : t1.lon});
         });
+
+	app.get('/api/osGridToLatLonSquare', function(req, res) {
+			console.log(req.query);
+			// sanity check on input should be done
+
+			var squareSide = parseInt(req.query.squareSide);
+			var northing = parseFloat(req.query.northing);
+			var easting = parseFloat(req.query.easting);
+
+			output = {};
+
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting, northing));
+			output["0"] = {lat : t1.lat, lon : t1.lon};
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting+squareSide, northing));
+			output["1"] = {lat : t1.lat, lon : t1.lon};
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting+squareSide, northing+squareSide));
+			output["2"] = {lat : t1.lat, lon : t1.lon};
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting, northing+squareSide));
+			output["3"] = {lat : t1.lat, lon : t1.lon};
+
+			res.json(output);
+        });
+
 
 	// frontend routes =========================================================
 	// route to handle all angular requests
