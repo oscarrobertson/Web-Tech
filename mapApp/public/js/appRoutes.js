@@ -4,8 +4,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 
 		// home page
 		.when('/', {
-			templateUrl: 'views/main.html',
-			controller: 'MainController'
+			templateUrl: 'views/home.html',
+			controller: 'HomeController'	
 		})
 
 		.when('/win2', {
@@ -19,8 +19,8 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 
 		.when('/win4', {
-			templateUrl: 'views/home.html',
-			controller: 'HomeController'	
+			templateUrl: 'views/main.html',
+			controller: 'MainController'
 		});
 
 	$locationProvider.html5Mode(true);
