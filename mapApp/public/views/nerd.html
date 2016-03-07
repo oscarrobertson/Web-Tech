@@ -8,13 +8,17 @@
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#">UK Heightmap Generator</a>
 				<div class="btn-group" id="plusminusgroup" role="group">
-				  	<button type="button" class="btn btn-default customWidth" id="plusBtn">+</button>
-				  	<button type="button" class="btn btn-default customWidth" id="minusBtn">-</button>
-				  	<button type="button" class="btn btn-info" id='square-size-display'>18km</span>
+				  	<button type="button" class="btn btn-default customWidth" id="plusBtn" ng-click="doPlus()">+</button>
+				  	<button type="button" class="btn btn-default customWidth" id="minusBtn" ng-click="doMinus()">-</button>
+				  	<button type="button" class="btn btn-info" id='square-size-display' ng-click="resetSquare()">18km</span>
 				</div>
-				<button type="button" class="btn btn-default" id="export">Export Map</button>
+				<button type="button" class="btn btn-default" id="export" ng-click="doExport()">Export Map</button>
 			</div>
 		</nav>
 		<div id='map-canvas'></div>
+	</div>
+
+	<div id="img-wrapper">
+		<img id="i" src="" width="{{dataLength}}" height="{{dataLength}}" style="display:none" />
 	</div>
 <!-- </div> -->

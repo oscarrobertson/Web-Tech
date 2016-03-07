@@ -65,6 +65,29 @@ module.exports = function(app) {
 			res.json({ lat : t1.lat, lon : t1.lon});
         });
 
+	app.get('/api/osGridToLatLonSquare', function(req, res) {
+			console.log(req.query);
+			// sanity check on input should be done
+
+			var squareSide = parseInt(req.query.squareSide);
+			var northing = parseFloat(req.query.northing);
+			var easting = parseFloat(req.query.easting);
+
+			output = {};
+
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting, northing));
+			output["0"] = {lat : t1.lat, lon : t1.lon};
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting+squareSide, northing));
+			output["1"] = {lat : t1.lat, lon : t1.lon};
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting+squareSide, northing+squareSide));
+			output["2"] = {lat : t1.lat, lon : t1.lon};
+			t1 = OsGridRef.osGridToLatLon(new OsGridRef(easting, northing+squareSide));
+			output["3"] = {lat : t1.lat, lon : t1.lon};
+
+			res.json(output);
+        });
+
+
 	// frontend routes =========================================================
 	// route to handle all angular requests
 	app.get('*', function(req, res) {
