@@ -2,7 +2,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 
 	$scope.tagline = 'Tagline to window 2';
 	$scope.squareSide = 18000;
-	$scope.squareBaseCoord = [460000,370000];
+	$scope.squareBaseCoord = [400000,300000];
 	$scope.squareCoords = null;
 	$scope.square = null;
 	$scope.dataLength = 1000;
@@ -88,28 +88,51 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
     	}
   		var map = new google.maps.Map(mapCanvas,mapOptions);
   		//$scope.squareCoords = makeSquareCoords();
-  		$scope.squareCoords = Array();
-  		$scope.squareCoords.push(new google.maps.LatLng(53.22366826263196,-1.1027732114985056));
-  		$scope.squareCoords.push(new google.maps.LatLng(53.22133473664206,-0.8332219465118293));
-  		$scope.squareCoords.push(new google.maps.LatLng(53.383097738465615,-0.8288047967116074));
-  		$scope.squareCoords.push(new google.maps.LatLng(53.385444971214035,-1.0993763643201835));
-  		console.log($scope.squareCoords[0].lat());
-  		$scope.square = new google.maps.Polygon({
-		    map: map,
-		    paths: $scope.squareCoords,
-		    strokeColor: '#FF0000',
-		    strokeOpacity: 0.8,
-		    strokeWeight: 2,
-		    fillColor: '#FF0000',
-		    fillOpacity: 0.35,
-		    draggable: true,
-		    geodesic: false
-		});
-		google.maps.event.addListener(map, 'click', function(e) {
-	  	});
-	  	google.maps.event.addListener($scope.square, 'dragend', function(e) {
-	  		redrawSquare();
-	  	});
+  		var promise = makeSquareCoordsPromise();
+
+  		$scope.squareCoords = Array(4);
+  		promise.then(function(newSquare) {
+  			for (i=0; i<4; i++){
+  				$scope.squareCoords[i] = new google.maps.LatLng(newSquare[i.toString()].lat,newSquare[i.toString()].lon);
+  			}
+	  		$scope.square = new google.maps.Polygon({
+			    map: map,
+			    paths: $scope.squareCoords,
+			    strokeColor: '#FF0000',
+			    strokeOpacity: 0.8,
+			    strokeWeight: 2,
+			    fillColor: '#FF0000',
+			    fillOpacity: 0.35,
+			    draggable: true,
+			    geodesic: false
+			});
+			google.maps.event.addListener(map, 'click', function(e) {
+		  	});
+		  	google.maps.event.addListener($scope.square, 'dragend', function(e) {
+		  		redrawSquare();
+		  	});
+  		});
+  		// $scope.squareCoords.push(new google.maps.LatLng(53.22366826263196,-1.1027732114985056));
+  		// $scope.squareCoords.push(new google.maps.LatLng(53.22133473664206,-0.8332219465118293));
+  		// $scope.squareCoords.push(new google.maps.LatLng(53.383097738465615,-0.8288047967116074));
+  		// $scope.squareCoords.push(new google.maps.LatLng(53.385444971214035,-1.0993763643201835));
+  // 		console.log($scope.squareCoords[0].lat());
+  // 		$scope.square = new google.maps.Polygon({
+		//     map: map,
+		//     paths: $scope.squareCoords,
+		//     strokeColor: '#FF0000',
+		//     strokeOpacity: 0.8,
+		//     strokeWeight: 2,
+		//     fillColor: '#FF0000',
+		//     fillOpacity: 0.35,
+		//     draggable: true,
+		//     geodesic: false
+		// });
+		// google.maps.event.addListener(map, 'click', function(e) {
+	 //  	});
+	 //  	google.maps.event.addListener($scope.square, 'dragend', function(e) {
+	 //  		redrawSquare();
+	 //  	});
   	}
 
   	function getENLLPromise(pathArray){
