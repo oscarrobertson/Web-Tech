@@ -1,1 +1,20 @@
-body { padding-top:30px; }
+body { padding-top:0px; }
+
+#map-canvas {
+    background:red;display: block;
+    position:absolute;
+    height:auto;
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    margin-top:50px; /* adjust top margin to your header height */
+    z-index: 1;
+}
+
+#overlay {
+	position:absolute;
+    z-index: 2;
+    top: 8%;
+    right: 0;
+}
