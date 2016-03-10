@@ -27,6 +27,8 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
   	}
 
   	$scope.doExport = function() {
+  		var modal = document.getElementById("image_modal");
+  		console.log(modal);
   		var ENLLPromise = getENLLPromise($scope.square.getPath().getArray());
   		ENLLPromise.then(function(OsPoint) {
   			$scope.squareBaseCoord = [OsPoint.easting, OsPoint.northing];
@@ -112,27 +114,6 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 		  		redrawSquare();
 		  	});
   		});
-  		// $scope.squareCoords.push(new google.maps.LatLng(53.22366826263196,-1.1027732114985056));
-  		// $scope.squareCoords.push(new google.maps.LatLng(53.22133473664206,-0.8332219465118293));
-  		// $scope.squareCoords.push(new google.maps.LatLng(53.383097738465615,-0.8288047967116074));
-  		// $scope.squareCoords.push(new google.maps.LatLng(53.385444971214035,-1.0993763643201835));
-  // 		console.log($scope.squareCoords[0].lat());
-  // 		$scope.square = new google.maps.Polygon({
-		//     map: map,
-		//     paths: $scope.squareCoords,
-		//     strokeColor: '#FF0000',
-		//     strokeOpacity: 0.8,
-		//     strokeWeight: 2,
-		//     fillColor: '#FF0000',
-		//     fillOpacity: 0.35,
-		//     draggable: true,
-		//     geodesic: false
-		// });
-		// google.maps.event.addListener(map, 'click', function(e) {
-	 //  	});
-	 //  	google.maps.event.addListener($scope.square, 'dragend', function(e) {
-	 //  		redrawSquare();
-	 //  	});
   	}
 
   	function getENLLPromise(pathArray){
@@ -159,7 +140,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 				    console.log("API failure - osToLatLon");
 				    reject("API failure - osToLatLon");
 				});
-			}, 1000);
+			}, 100);
 		});
   	}
 
@@ -216,7 +197,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 				    console.log("API failure - osToLatLon");
 				    reject("API failure - osToLatLon");
 				});
-			}, 1000);
+			}, 100);
 		});
   	}
 
@@ -236,7 +217,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 				    console.log("API failure - latLonToOs");
 				    reject("API failure - latLonToOs");
 				});
-			}, 1000);
+			}, 100);
 		});
   	}
 
