@@ -1,6 +1,10 @@
+This readme outlines features or areas of attempted development of the project that are not immediately apparent by simply running the server. 
+
+## BACKEND ##
+
 The largest amount of work on the backend has been the implementation of the mapMaker module. This is the module that is able to take in coordinates of areas of the UK and output an array representing the region's terrain using free data (~3000 ascii files for the whole UK mainland) provided by Ordnance Survey. This module is also able to resize the output array to any size, larger or smaller (though clearly creation of a larger image results in estimation of data points) meaning that output PNG images can be created for any desired size. Currently the module only works for square regions but the next step is to implement rectangular region calculations.
 
-The other module implemented in the modules folder is the conv module. This is not our code but is MIT licensed and available for free online. This module provides calculations for geocoding, speecifically for this project we use it to convert between the coordinate system used by mapping APIs (latitude and longitude) to the coordinate system used by the OS map data (Easting and Northing). We included this code to avoid having to make use of commercial geocoding APIs like those provided by Google and OS maps since these need to be payed for at a certain number of requests and we do not need the majority of the large range of services they provide.
+The other module implemented in the modules folder is the conv module. This is not our code but is MIT licensed and available for free online. This module provides calculations for geocoding, specifically for this project we use it to convert between the coordinate system used by mapping APIs (latitude and longitude) to the coordinate system used by the OS map data (Easting and Northing). We included this code to avoid having to make use of commercial geocoding APIs like those provided by Google and OS maps since these need to be paid for at a certain number of requests and we do not need the majority of the large range of services they provide.
 
 Both of the above modules are tightly linked to the backend API calls (all calls return as JSON objects unless otherwise specified):
 
@@ -12,6 +16,18 @@ Both of the above modules are tightly linked to the backend API calls (all calls
 
 	/osGridToLatLon			-	Used to convert a given easting and northing point to the corresponding point in latitude and longitude.
 
-	/osGridToLatLonSquare	-	Takes in square coordinates in northing and easting format and generates the latitude and longitude coordinates of each of the corners of the square. This call is useful for the frontend as it means only making one api call rather than four.
+	/osGridToLatLonSquare	-	Takes in square coordinates in northing and easting format and generates the latitude and longitude coordinates of each of the corners of the square. This call is useful for the frontend as it means only making one API call rather than four.
 
 The rest of the server is a stack using Node.js, Express and Angular. We have yet to set up a database but plan to use MongoDB or SQLite.
+
+## FRONTEND ##
+
+The frontend consists of fairly standard Angular code with various pages offering different features tying into the API. 
+
+The "Custom Generator" page essentially provides a way to interact with the /map API call. The call however only returns an array and therefore the page must generate the PNG from this array if the user is to be given a nice looking image. We avoided generating PNGs server side as they can take a very long time and would hog computation time on the server. The page calls the /map api and though clever use of the HTML canvas it is able to create a PNG image using just javascript executed in the browser, saving huge amounts of computation time on the server.
+
+The "Normal Map" page lets a user drag and resize a square around a map to select an area they would like to export as a heightmap. This page makes extensive use of the coordinate conversion API. The coordinates of the square are primarily stored in Northing and Easting format to ensure that a heightmap can be more easily generated (since the resulting call to the mapMaker module is a square). This page also makes use of in browser PNG generation.
+
+Note that the red square on the page, even though it is defined square in Northing Easting coordinates, is skewed and changes shape as it is dragged around. This is because to be presented on the map it must be converted to latitude and longitude coordinates and the difference in coordinate systems is displayed in the shape of the square.
+
+The large number of API calls made by this page also means that a large amount of the code ends up being quite complex due to the need to deal with asynchronicity. This was achieved by using the angular construct of promises which took some time to learn about.
