@@ -27,8 +27,9 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
   	}
 
   	$scope.doExport = function() {
-  		var modal = document.getElementById("image_modal");
-  		console.log(modal);
+  		var element = angular.element('#image_modal');
+		element.modal('show');
+
   		var ENLLPromise = getENLLPromise($scope.square.getPath().getArray());
   		ENLLPromise.then(function(OsPoint) {
   			$scope.squareBaseCoord = [OsPoint.easting, OsPoint.northing];
@@ -38,12 +39,9 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			yll = Math.round(yll/100)*100;
 			var side = $scope.squareSide;
 			side = Math.round(side/100)*100;
-			//var ds = document.getElementById("ds_input").value;
+			var ds = 500;
 
-			var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side;
-			// if (!(ds == "")) {
-			// 	requestString += '&ds=' + ds;
-			// }
+			var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side + '&ds=' + ds;
 			return $http({
 			  method: 'GET',
 			  url: requestString
