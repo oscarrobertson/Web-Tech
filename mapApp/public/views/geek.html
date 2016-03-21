@@ -1,0 +1,39 @@
+<!-- <div class="jumbotron text-center"> -->
+	
+	<div id="overlay">
+		<div class="container-fluid">
+<!-- 			<div class="btn-group" id="plusminusgroup" role="group">
+			  	<button type="button" class="btn btn-default customWidth" id="plusBtn" ng-click="doPlus()">+</button>
+				<button type="button" class="btn btn-default customWidth" id="minusBtn" ng-click="doMinus()">-</button>
+				<button type="button" class="btn btn-info" id='square-size-display' ng-click="resetSquare()">18km</span>
+			</div> -->
+			<button type="button" class="btn btn-default" id="export" ng-click="doExport()">Export Map</button>
+		</div>
+	</div>
+
+	<div id='map-canvas'></div>
+
+	<div id="image_modal" class="modal fade" role="dialog">	
+		<div class="modal-dialog">
+
+	    <!-- Modal content-->
+		    <div class="modal-content">
+		     	<div class="modal-header">
+		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
+		         	<h4 class="modal-title">Join Us Today!</h4>
+		     	</div>
+
+		      	<div class="modal-body">
+					<div id="img-wrapper">
+						<img id="i" src="" width="{{dataLength}}" height="{{dataLength}}" style="display:none" />
+					</div>
+				</div>
+
+				<div class="modal-footer">
+	        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	      		</div>
+			</div>
+		</div>
+	</div>
+
+<!-- </div> -->

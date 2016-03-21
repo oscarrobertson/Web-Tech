@@ -2,7 +2,8 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 
 	$scope.tagline = 'Enter UK OS map coordinates for the lower left corner of the square region you want to see!';	
 	$scope.togline = "";
-	$scope.dataLength = 1000;
+	$scope.dataWidth = 1000;
+	$scope.dataHeight = 1000;
 	$scope.map = [];
 	$scope.do = function(){
 		$scope.togline = 'working...';
@@ -14,7 +15,10 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		side = Math.round(side/100)*100;
 		var ds = document.getElementById("ds_input").value;
 
-		var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side;
+		var requestString = 'http://localhost:8080/api/map?xll=' + xll + 
+		'&yll=' + yll + 
+		'&h=' + side +
+		'&w=' + '10000';
 		if (!(ds == "")) {
 			requestString += '&ds=' + ds;
 		}
@@ -26,12 +30,13 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 		    // when the response is available
 		    //$scope.map = response.data.message;
 		    $scope.togline = 'done!';
-		    var dataLength =  response.data.message.length;
-		    $scope.dataLength = dataLength;
+		    console.log(response.data.message[0].length);
+		    $scope.dataWidth = response.data.message[0].length;
+		    $scope.dataHeight = response.data.message.length;
 		    $scope.map = [];
 		    console.log("start array")
-			for(var i = 0, l = dataLength; i < l; i++){
-				for(var j = 0, k =  dataLength; j < k; j++){
+			for(var i = 0, l = $scope.dataHeight; i < l; i++){
+				for(var j = 0, k =  $scope.dataWidth; j < k; j++){
 					var temp = parseInt(response.data.message[i][j]);
 					temp = temp*256/65536;
 					temp = parseInt(temp);
@@ -43,7 +48,7 @@ angular.module('MainCtrl', []).controller('MainController', function($scope, $ht
 			//display image only after it's loaded
 			image.onload = function(){this.style.display='block'}.bind(image);
 			//and finally set the .src
-			image.src = dataToBase64($scope.map, dataLength, dataLength);
+			image.src = dataToBase64($scope.map, $scope.dataWidth, $scope.dataHeight);
 
 		  }, function errorCallback(response) {
 		    // called asynchronously if an error occurs

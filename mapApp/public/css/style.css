@@ -1,7 +1,8 @@
 body { padding-top:0px; }
 
 #map-canvas {
-    background:red;display: block;
+    /*background:red;*/
+    display: block;
     position:absolute;
     height:auto;
     bottom:0;

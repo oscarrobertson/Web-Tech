@@ -8,7 +8,7 @@ var BIT_DEPTH = 8
 // Identifies all regions in a given square
 // sqaure coord input as os map coordinates of lower left corner and length of side
 // Returns list of coordinates of lower left corner of all regions
-function findRegions(x, y, w) {
+function findRegions(x, y, h, w) {
     var xregions = [];
     var yregions = [];
     var i = parseInt(x/REGION_WIDTH)*REGION_WIDTH;
@@ -19,7 +19,7 @@ function findRegions(x, y, w) {
     }
 
     i = parseInt(y/REGION_WIDTH)*REGION_WIDTH;
-    while (i <= y+w){
+    while (i <= y+h){
         yregions.push(i);
         i += REGION_WIDTH;
     }
@@ -137,7 +137,7 @@ function createDataArray(regionsNeeded) {
     return regions;
 }
 
-function refineDataArray(dataArray, xll, yll, width){
+function refineDataArray(dataArray, xll, yll, height, width){
     // the ll coord of the whole input square
     var squareXll = parseInt(xll/REGION_WIDTH)*REGION_WIDTH;
     var squareYll = parseInt(yll/REGION_WIDTH)*REGION_WIDTH;
@@ -147,13 +147,14 @@ function refineDataArray(dataArray, xll, yll, width){
     var yStart = (yll-squareYll)/ELEMENT_WIDTH;
     // length of side of desired region in terms of number of elements
 
-    var length = width/ELEMENT_WIDTH;
+    var w = width/ELEMENT_WIDTH;
+    var h = height/ELEMENT_WIDTH;
 
     var refinedOutput = [];
     var newRow = [];
-    var startLoc = dataArray.length - yStart - length;
+    var startLoc = dataArray.length - yStart - h;
     while (startLoc < dataArray.length - yStart) {
-        newRow = dataArray[startLoc].slice(xStart,xStart+length);
+        newRow = dataArray[startLoc].slice(xStart,xStart+w);
         refinedOutput.push(newRow);
         startLoc+=1;
     }
@@ -234,19 +235,18 @@ function applyContrast(data, minimum, maximum){
 
 
 var MakeMap = function() {
-
 };
 
 // desiredSize is optional
-MakeMap.prototype.create = function(x,y,w,desiredSize) {
+MakeMap.prototype.create = function(x,y,h,w,desiredSize) {
     // build list of coordinates where the data lies
-    var regions = findRegions(x,y,w);
+    var regions = findRegions(x,y,h,w);
 
     // build the 2d array of all squraes where the requested data exists
     var dataArray = createDataArray(regions);
 
     // refine array to just data included in the request
-    var dataArray = refineDataArray(dataArray, x, y, w);
+    var dataArray = refineDataArray(dataArray, x, y, h, w);
 
     // resize the array to the output size
     if (!(typeof desiredSize === 'undefined')){

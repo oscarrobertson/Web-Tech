@@ -41,7 +41,11 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			side = Math.round(side/100)*100;
 			var ds = 500;
 
-			var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side + '&ds=' + ds;
+			var requestString = 'http://localhost:8080/api/map?xll=' + xll + 
+			'&yll=' + yll + 
+			'&h=' + side +
+			'&w=' + side + 
+			'&ds=' + ds;
 			return $http({
 			  method: 'GET',
 			  url: requestString
@@ -87,7 +91,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
       		mapTypeId: google.maps.MapTypeId.ROADMAP
     	}
   		var map = new google.maps.Map(mapCanvas,mapOptions);
-  		//$scope.squareCoords = makeSquareCoords();
+
   		var promise = makeSquareCoordsPromise();
 
   		$scope.squareCoords = Array(4);
