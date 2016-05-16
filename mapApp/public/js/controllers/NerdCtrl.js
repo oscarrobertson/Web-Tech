@@ -30,6 +30,9 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
   		var element = angular.element('#image_modal');
 		element.modal('show');
 
+		// var loading_modal = angular.element('#loading-modal');
+		// loading_modal.modal('show');
+
   		var ENLLPromise = getENLLPromise($scope.square.getPath().getArray());
   		ENLLPromise.then(function(OsPoint) {
   			$scope.squareBaseCoord = [OsPoint.easting, OsPoint.northing];
@@ -67,6 +70,11 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			image.onload = function(){this.style.display='block'}.bind(image);
 			//and finally set the .src
 			image.src = dataToBase64($scope.map, dataLength, dataLength);
+			// loading_modal = angular.element('#loading-modal');
+			// loading_modal.modal('hide');
+			var element = angular.element('#image_modal');
+			element.modal('show');
+			
 
 		  }, function errorCallback(response) {
 		    // called asynchronously if an error occurs

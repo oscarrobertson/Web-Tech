@@ -131,8 +131,22 @@
 		</div>
 	</div>
 
-	<!-- ANGULAR DYNAMIC CONTENT -->
+	<!-- ANGULAR DYNAMIC CONTENT VIEW-->
 	<div ng-view></div>
-	
+
+
+	<div class="modal" class="modal fade loadingModal" id="loading-modal">
+		<svg x="0px" y="0px" width="100px" height="100px" viewBox="0 0 100 100">
+		<g>
+			<circle fill="#FFFFFF" stroke="#158C18" stroke-width="8" stroke-dasharray="11" cx="50" cy="50" r="45.057">
+				<animateTransform  to="360 50 50" from="0 50 50" dur="5" type="rotate" attributeName="transform" repeatCount="indefinite" attributeType="XML">
+				</animateTransform>
+			</circle>
+		</g>
+		<polygon fill="#158C18" stroke="#158C18" stroke-width="2" points="50,55 35,30 15,70 85,70 65,40 ">
+			<animate attributeName="points" begin="0s" dur="2s" repeatCount="indefinite" values="50,55 35,30 15,70 85,70 65,40; 50,55 35,40 15,70 85,70 65,30; 50,55 35,30 15,70 85,70 65,40"/>
+		</polygon>
+		</svg>
+	</div>
 </body>
 </html>
