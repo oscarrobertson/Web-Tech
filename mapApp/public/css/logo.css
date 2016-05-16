@@ -1,0 +1,56 @@
+@font-face {
+font-family: 'ZonaPro-Bold';
+src: url("ZonaPro-Bold.otf") format("opentype");
+}
+
+.transition_one_sec {
+		-webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+
+#logo:hover #mountain_left {
+	transform: scale(1.05, 1.05);
+	-ms-transform: scale(1.05, 1.05);
+	-webkit-transform: scale(1.05, 1.05);
+	-moz-transform: scale(1.05, 1.05);
+}
+
+#logo:hover #m_left_wrapper {	
+	-webkit-transform: translate(-40px,-10px);
+    -moz-transform: translate(-40px,-10px);
+    -ms-transform: translate(-40px,-10px);
+    transform: translate(-40px,-10px);
+}
+
+#logo:hover #mountain_right {
+	transform: scale(1.1, 1.1);
+	-ms-transform: scale(1.1, 1.1);
+	-webkit-transform: scale(1.1, 1.1);
+	-moz-transform: scale(1.1, 1.1);
+}
+
+#logo:hover #m_right_wrapper {	
+	-webkit-transform: translate(-40px,-20px);
+    -moz-transform: translate(-40px,-20px);
+    -ms-transform: translate(-40px,-20px);
+    transform: translate(-40px,-20px);
+}
+
+#logo:hover #tagline {
+	opacity: 1;
+	transition: opacity 1s ease-in-out;
+	-moz-transition: opacity 1s ease-in-out;
+	-webkit-transition: opacity 1s ease-in-out;
+}
+
+#logo:hover #tagline_wrapper {	
+	-webkit-transform: translate(0,3em);
+    -moz-transform: translate(0,3em);
+    -ms-transform: translate(0,3em);
+    transform: translate(0,3em);
+}
+
+#tagline {
+	opacity: 0;
+}
