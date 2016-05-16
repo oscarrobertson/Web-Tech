@@ -1,38 +1,40 @@
 angular.module('NerdCtrl', []).controller('NerdController', function($scope, $timeout, $http, $q) {
 
 	$scope.tagline = 'Tagline to window 2';
-	$scope.squareSide = 18000;
+	$scope.squareSide = 27000;
 	$scope.squareBaseCoord = [400000,300000];
 	$scope.squareCoords = null;
 	$scope.square = null;
 	$scope.dataLength = 1000;
 
 	$scope.doPlus = function() {
-		if ($scope.squareSide < 30000) {
+		if ($scope.squareSide < 40000) {
 	  		$scope.squareSide = $scope.squareSide + 1000;
 	  		redrawSquare();
 	  	}
 	}
 
 	$scope.doMinus = function() {
-  		if ($scope.squareSide > 10000) {
+  		if ($scope.squareSide > 15000) {
   			$scope.squareSide = $scope.squareSide - 1000;
   			redrawSquare();
   		}
   	}
 
 	$scope.resetSquare = function() {
-  		$scope.squareSide = 18000;
+  		$scope.squareSide = 27000;
   		redrawSquare();
   	}
 
   	$scope.doExport = function() {
-  		var element = angular.element('#image_modal');
-		element.modal('show');
+  // 		var element = angular.element('#image_modal');
+		// element.modal('show');
 
-		// var loading_modal = angular.element('#loading-modal');
-		// loading_modal.modal('show');
+		var loading_modal = angular.element('#loading-modal');
+		loading_modal.modal('show');
 
+		var now = new Date().getTime();
+    
   		var ENLLPromise = getENLLPromise($scope.square.getPath().getArray());
   		ENLLPromise.then(function(OsPoint) {
   			$scope.squareBaseCoord = [OsPoint.easting, OsPoint.northing];
@@ -42,7 +44,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			yll = Math.round(yll/100)*100;
 			var side = $scope.squareSide;
 			side = Math.round(side/100)*100;
-			var ds = 500;
+			var ds = 600;
 
 			var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side + '&ds=' + ds;
 			return $http({
@@ -70,11 +72,12 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			image.onload = function(){this.style.display='block'}.bind(image);
 			//and finally set the .src
 			image.src = dataToBase64($scope.map, dataLength, dataLength);
-			// loading_modal = angular.element('#loading-modal');
-			// loading_modal.modal('hide');
+
+			loading_modal = angular.element('#loading-modal');
+			loading_modal.modal('hide');
 			var element = angular.element('#image_modal');
 			element.modal('show');
-			
+
 
 		  }, function errorCallback(response) {
 		    // called asynchronously if an error occurs
