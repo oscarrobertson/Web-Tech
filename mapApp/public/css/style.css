@@ -1,7 +1,8 @@
 body { padding-top:0px; }
 
 #map-canvas {
-    background:red;display: block;
+    background:white;
+    display: block;
     position:absolute;
     height:auto;
     bottom:0;
@@ -24,3 +25,6 @@ body { padding-top:0px; }
     height: 100%;
 }
 
+#navigation-bar {
+    margin-bottom: 0px; 
+}
