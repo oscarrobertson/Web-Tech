@@ -6,6 +6,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 	$scope.squareCoords = null;
 	$scope.square = null;
 	$scope.dataLength = 1000;
+	$scope.ds = 500
 
 	$scope.doPlus = function() {
 		if ($scope.squareSide < 40000) {
@@ -26,6 +27,25 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
   		redrawSquare();
   	}
 
+  	$scope.doPlusPx = function() {
+		if ($scope.ds < 800) {
+	  		$scope.ds = $scope.ds + 100;
+	  		document.getElementById('output-size-display').innerHTML = $scope.ds + 'px';
+	  	}
+	}
+
+	$scope.doMinusPx = function() {
+  		if ($scope.ds > 300) {
+  			$scope.ds = $scope.ds - 100;
+  			document.getElementById('output-size-display').innerHTML = $scope.ds + 'px';
+  		}
+  	}
+
+	$scope.resetSquarePx = function() {
+  		$scope.ds = 500;
+  		document.getElementById('output-size-display').innerHTML = $scope.ds + 'px';
+  	}
+
   	$scope.doExport = function() {
   // 		var element = angular.element('#image_modal');
 		// element.modal('show');
@@ -44,9 +64,8 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			yll = Math.round(yll/100)*100;
 			var side = $scope.squareSide;
 			side = Math.round(side/100)*100;
-			var ds = 600;
 
-			var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side + '&ds=' + ds;
+			var requestString = 'http://localhost:8080/api/map?xll=' + xll + '&yll=' + yll + '&side=' + side + '&ds=' + $scope.ds;
 			return $http({
 			  method: 'GET',
 			  url: requestString
@@ -73,10 +92,10 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			//and finally set the .src
 			image.src = dataToBase64($scope.map, dataLength, dataLength);
 
-			// loading_modal = angular.element('#loading-modal');
-			// loading_modal.modal('hide');
-			// var element = angular.element('#image_modal');
-			// element.modal('show');
+			loading_modal = angular.element('#loading-modal');
+			loading_modal.modal('hide');
+			var element = angular.element('#image_modal');
+			element.modal('show');
 
 
 		  }, function errorCallback(response) {
