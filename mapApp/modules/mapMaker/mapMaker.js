@@ -233,6 +233,74 @@ function applyContrast(data, minimum, maximum){
     return output;
 }
 
+function isPointLessThanLine(line, x, y){
+    return y < x*line.m + line.c
+}
+
+function findLine(p1, p2){
+    line = new Object();
+    line.m = (p1.northing - p2.northing)/(p1.easting - p2.easting);
+    line.c = p1.northing - line.m * p1.easting;
+    return line
+}
+
+function findTriangles(d){
+    tris = new Object();
+    tris.top = findLine(d.nw, d.ne);
+    tris.right = findLine(d.ne, d.se);
+    tris.bottom = findLine(d.se, d.sw);
+    tris.left = findLine(d.sw, d.nw);
+    return tris
+}
+
+// cuts defined triangles from array then makes square
+function shaveArray(dataArray, boundingDict, trianglesDict, expectedW, expectedH){
+    console.log(trianglesDict);
+    var startIndex = 0;
+    var endIndex = 0;
+    var currentHeight = boundingDict.top;
+    var currentWidth = boundingDict.left;
+    var isLeftLean = true;
+    if (trianglesDict.right.m < 0){
+        isLeftLean = true;
+    }
+    else{
+        isLeftLean = false;
+    }
+    for (i = 0; i < dataArray.length; i++){
+        startIndex = 0;
+        endIndex = dataArray[i].length-1;
+        currentWidth = boundingDict.left;
+        for (j = 0; j < dataArray[i].length; j++){
+            if (!isPointLessThanLine(trianglesDict.top, currentWidth, currentHeight)
+                || isPointLessThanLine(trianglesDict.bottom, currentWidth, currentHeight)
+                ){
+                dataArray[i][j] = 65535;
+            }
+            if (!isLeftLean){
+                if (!isPointLessThanLine(trianglesDict.left, currentWidth, currentHeight)
+                    || isPointLessThanLine(trianglesDict.right, currentWidth, currentHeight)
+                    ){
+                    dataArray[i][j] = 65535;
+                }
+            }
+            else {
+                if (isPointLessThanLine(trianglesDict.left, currentWidth, currentHeight)
+                    || !isPointLessThanLine(trianglesDict.right, currentWidth, currentHeight)
+                    ){
+                    dataArray[i][j] = 65535;
+                }
+            }
+
+
+            currentWidth += 50;
+        }
+
+        currentHeight -= 50;
+    }
+    return dataArray;
+}
+
 
 var MakeMap = function() {
 };
@@ -258,6 +326,40 @@ MakeMap.prototype.create = function(x,y,h,w,desiredSize) {
 
     return dataArray;
 };
+
+// inDict =
+// {
+//     sw : {easting : x, northing : y},
+//     nw : {easting : x, northing : y},
+//     se : {easting : x, northing : y},
+//     ne : {easting : x, northing : y}
+// }
+MakeMap.prototype.createSkewed = function(inDict){
+    var boundingDict = new Object();
+    // calculate the bounding square of the diamond
+    boundingDict.bottom  = Math.min(inDict.sw.northing,  inDict.se.northing);
+    boundingDict.top     = Math.max(inDict.ne.northing,  inDict.nw.northing);
+    boundingDict.left    = Math.min(inDict.sw.easting,   inDict.nw.easting);
+    boundingDict.right   = Math.max(inDict.se.easting,   inDict.ne.easting);
+
+    var h = boundingDict.right-boundingDict.left;
+    var w = boundingDict.top-boundingDict.bottom;
+    h = parseInt(h/100)*100;
+    w = parseInt(w/100)*100;
+
+    // build 2d map array of the bounding box1
+    var regions = findRegions(boundingDict.left,boundingDict.bottom,h,w);
+    var dataArray = createDataArray(regions);
+    dataArray = applyOverallContrast(dataArray);
+    dataArray = refineDataArray(dataArray, parseInt(boundingDict.left/100)*100, parseInt(boundingDict.bottom/100)*100, h, w);
+
+    var trianglesDict = findTriangles(inDict);
+    
+    dataArray = shaveArray(dataArray, boundingDict, trianglesDict);
+
+    return dataArray;
+
+}
 
 
 module.exports = MakeMap;

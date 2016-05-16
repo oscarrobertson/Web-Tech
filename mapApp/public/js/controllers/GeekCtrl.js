@@ -1,7 +1,68 @@
 angular.module('GeekCtrl', []).controller('GeekController', function($scope,$timeout, $http, $q) {
 
 	$scope.tagline = 'Tagline to window 3';	
-	$scope.dataLength = 1000;
+	$scope.dataWidth = 1000;
+	$scope.dataHeight = 1000;
+
+	$scope.map = [];
+	$scope.doIt = function(requestString){
+		console.log(requestString);
+		$http({
+		  method: 'GET',
+		  url: requestString
+		}).then(function successCallback(response) {
+			var element = angular.element('#image_modal');
+			element.modal('show');
+		    // this callback will be called asynchronously
+		    // when the response is available
+		    $scope.dataWidth = response.data.message[0].length;
+		    $scope.dataHeight = response.data.message.length;
+		    $scope.map = [];
+		    console.log("start array")
+			for(var i = 0, l = $scope.dataHeight; i < l; i++){
+				for(var j = 0, k =  $scope.dataWidth; j < k; j++){
+					var temp = parseInt(response.data.message[i][j]);
+					temp = temp*256/65536;
+					temp = parseInt(temp);
+					$scope.map.push(temp);
+				}
+			}
+
+			var image = document.getElementById('i');
+			//display image only after it's loaded
+			image.onload = function(){this.style.display='block'}.bind(image);
+			//and finally set the .src
+			image.src = dataToBase64($scope.map, $scope.dataWidth, $scope.dataHeight);
+
+		  }, function errorCallback(response) {
+		    // called asynchronously if an error occurs
+		    // or server returns response with an error status.
+		    console.log("API failure - map");
+		});
+	};
+
+	function dataToBase64(colors, width, height){
+	    var canvas = document.createElement('canvas'),
+	        ctx = canvas.getContext('2d'),
+	        color;
+	    //setup canvas
+	    canvas.width = width,
+	    canvas.height = height;
+	    //grab data
+	    var data = ctx.getImageData(0, 0, width, height),
+	        _data = data.data; //simple speed optimization    
+	    //place data
+	    for(var i = 0, l = _data.length; i < l; i+=4){
+	        color = colors[i/4];
+	        _data[i] = color,
+	        _data[i+1] = color,
+	        _data[i+2] = color,
+	        _data[i+3] = 255;
+	    }
+	    ctx.putImageData(data, 0, 0);
+	    //return base64 string
+	    return canvas.toDataURL();
+	}
 
 	$scope.initialize = function() {
   		var mapCanvas = document.getElementById('map-canvas');
@@ -39,7 +100,7 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope,$tim
 			map: map,
 			draggable: true,
 			center: {lat: 53.223668, lng: -1.102773}, 
-			radius: 100000
+			radius: 70000
 		});
 		$scope.sqPaths = [];
 		$scope.sqPaths.push(new google.maps.LatLng(51,1));
@@ -74,30 +135,32 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope,$tim
 	  		'&s=' + sqb.s + 
 	  		'&e=' + sqb.e + 
 	  		'&w=' + sqb.w ;
-		  	$http({
-			  method: 'GET',
-			  url: requestString
-			}).then(function successCallback(response) {
+	  		//console.log(requestString);
+	  		$scope.doIt(requestString);
+		 //  	$http({
+			//   method: 'GET',
+			//   url: requestString
+			// }).then(function successCallback(response) {
 			    
-				// console.log(response.data.res);
-				// console.log(response.data.res2);
+			// 	// console.log(response.data.res);
+			// 	// console.log(response.data.res2);
 
-				var res2 = response.data.res2;
-				console.log(res2);
+			// 	// var res2 = response.data.res2;
+			// 	// console.log(res2);
 
-				var newPaths = [];
-				for (i=0;i<4;i++){
-					newPaths.push( new google.maps.LatLng(res2[i].lat,res2[i].lon));
-				}
-				$scope.sqPaths = newPaths;
-				$scope.diamond.setPaths(newPaths);
-				console.log("newpaths");
+			// 	// var newPaths = [];
+			// 	// for (i=0;i<4;i++){
+			// 	// 	newPaths.push( new google.maps.LatLng(res2[i].lat,res2[i].lon));
+			// 	// }
+			// 	// $scope.sqPaths = newPaths;
+			// 	// $scope.diamond.setPaths(newPaths);
+			// 	// console.log("newpaths");
 
-			  }, function errorCallback(response) {
-			    // called asynchronously if an error occurs
-			    // or server returns response with an error status.
-			    console.log("API failure - LatLonSquToMap");
-			});
+			//   }, function errorCallback(response) {
+			//     // called asynchronously if an error occurs
+			//     // or server returns response with an error status.
+			//     console.log("API failure - LatLonSquToMap");
+			// });
 
 	  	});
   	}

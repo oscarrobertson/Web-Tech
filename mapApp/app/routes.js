@@ -94,35 +94,50 @@ module.exports = function(app) {
 
 			var n = req.query.n;
 			var s = req.query.s;
+
+
 			var e = req.query.e;
 			var w = req.query.w;
+
+			var inDict = {};
 
 			var sw = OsGridRef.latLonToOsGrid(new LatLon(s,w));
 			var se = OsGridRef.latLonToOsGrid(new LatLon(s,e));
 			var nw = OsGridRef.latLonToOsGrid(new LatLon(n,w));
 			var ne = OsGridRef.latLonToOsGrid(new LatLon(n,e));
 
-			var bottom = Math.min(sw.northing,se.northing);
-			var top = Math.max(ne.northing,nw.northing);
-			var left = Math.min(sw.easting,nw.easting);
-			var right = Math.max(se.easting,ne.easting);
+			inDict.sw = sw;
+			inDict.se = se;
+			inDict.nw = nw;
+			inDict.ne = ne;
 
-			var sw2 = [bottom,left];
-			var se2 = [bottom,right];
-			var ne2 = [top,right];
-			var nw2 = [top,left];
+			var mapMaker = new MapMaker();
+			var output = mapMaker.createSkewed(inDict);
 
-			sw2 = OsGridRef.osGridToLatLon(new OsGridRef(sw2[1], sw2[0]));
-			se2 = OsGridRef.osGridToLatLon(new OsGridRef(se2[1], se2[0]));
-			ne2 = OsGridRef.osGridToLatLon(new OsGridRef(ne2[1], ne2[0]));
-			nw2 = OsGridRef.osGridToLatLon(new OsGridRef(nw2[1], nw2[0]));
+			res.json({ message: output });
 
-			console.log([top-bottom,right-left]);
+			// var bottom = Math.min(sw.northing,se.northing);
+			// var top = Math.max(ne.northing,nw.northing);
+			// var left = Math.min(sw.easting,nw.easting);
+			// var right = Math.max(se.easting,ne.easting);
+			// console.log([top, bottom, left, right]);
+
+			// var sw2 = [bottom,left];
+			// var se2 = [bottom,right];
+			// var ne2 = [top,right];
+			// var nw2 = [top,left];
+
+			// sw2 = OsGridRef.osGridToLatLon(new OsGridRef(sw2[1], sw2[0]));
+			// se2 = OsGridRef.osGridToLatLon(new OsGridRef(se2[1], se2[0]));
+			// ne2 = OsGridRef.osGridToLatLon(new OsGridRef(ne2[1], ne2[0]));
+			// nw2 = OsGridRef.osGridToLatLon(new OsGridRef(nw2[1], nw2[0]));
+
+			// console.log([top-bottom,right-left]);
     		
 
-			output = {res : [sw,se,ne,nw], res2 : [sw2,se2,ne2,nw2]};
+			// output = {res : [sw,se,ne,nw], res2 : [sw2,se2,ne2,nw2]};
 
-			res.json(output);
+			// res.json(output);
         });
 
 
