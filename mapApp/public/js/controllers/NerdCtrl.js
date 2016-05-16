@@ -73,10 +73,10 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 			//and finally set the .src
 			image.src = dataToBase64($scope.map, dataLength, dataLength);
 
-			loading_modal = angular.element('#loading-modal');
-			loading_modal.modal('hide');
-			var element = angular.element('#image_modal');
-			element.modal('show');
+			// loading_modal = angular.element('#loading-modal');
+			// loading_modal.modal('hide');
+			// var element = angular.element('#image_modal');
+			// element.modal('show');
 
 
 		  }, function errorCallback(response) {

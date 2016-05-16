@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="libs/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="css/style.css"> <!-- custom styles -->
 	<link rel="stylesheet" href="css/logo.css">
+	<link rel="stylesheet" href="css/loading.css">
 
 	<script src="//code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="libs/bootstrap/dist/js/bootstrap.min.js"></script>
@@ -137,17 +138,24 @@
 
 	<div class="modal" class="modal fade loadingModal" id="loading-modal">
 		<div class="loading-svg-container">
-			<svg width="300px" height="300px" viewBox="0 0 300 300">
-			<g>
-				<circle fill-opacity="0" stroke="#158C18" stroke-width="8" stroke-dasharray="11" cx="50" cy="50" r="45.057">
-					<animateTransform  to="360 50 50" from="0 50 50" dur="5" type="rotate" attributeName="transform" repeatCount="indefinite" attributeType="XML">
-					</animateTransform>
-				</circle>
-			</g>
-			<polygon fill="#158C18" stroke="#158C18" stroke-width="2" points="50,55 35,30 15,70 85,70 65,40 ">
-				<animate attributeName="points" begin="0s" dur="2s" repeatCount="indefinite" values="50,55 35,30 15,70 85,70 65,40; 50,55 35,40 15,70 85,70 65,30; 50,55 35,30 15,70 85,70 65,40"/>
-			</polygon>
-			</svg>
+			<div class="rotating logo-piece" id="loading-icon-circle">
+				<svg width="100px" height="100px" viewBox="0 0 100 100">
+					<circle fill-opacity="0" stroke="#158C18" stroke-width="8" stroke-dasharray="11" cx="50" cy="50" r="45.057">
+					</circle>
+				</svg>
+			</div>
+			<div id="loading-icon-left" class="logo-piece scaling-down">
+				<svg width="100px" height="100px" viewBox="0 0 100 100">
+					<polygon fill="#158C18" stroke="#158C18" stroke-width="2" points="60,70 35,30 15,70">
+					</polygon>
+				</svg>
+			</div>
+			<div id="loading-icon-right" class="logo-piece scaling-up">
+				<svg width="100px" height="100px" viewBox="0 0 100 100">
+					<polygon fill="#158C18" stroke="#158C18" stroke-width="2" points="40,70 85,70 65,40 ">
+					</polygon>
+				</svg>
+			</div>
 		</div>
 	</div>
 </body>
