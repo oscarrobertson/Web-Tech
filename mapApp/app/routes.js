@@ -33,8 +33,13 @@ module.exports = function(app) {
 			var y = parseInt(req.query.y);
 			var z = parseInt(req.query.z);
 
-            
-    		var img = fs.readFileSync('./modules/mapMaker/mapPngs/' + z +'/' + x +'/'+ y + '.png');
+            var img;
+            try{
+            	img = fs.readFileSync('./modules/mapMaker/mapPngs/' + z +'/' + x +'/'+ y + '.png');
+            }
+            catch(err) {
+            	img = fs.readFileSync('./modules/mapMaker/mapPngs/4/0/0.png');
+            }
 			res.writeHead(200, {'Content-Type': 'image/png' });
 			res.end(img, 'binary');
         });
