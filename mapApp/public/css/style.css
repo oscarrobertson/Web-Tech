@@ -85,6 +85,7 @@ body { padding-top:0px; }
     font-family: sans-serif;
     padding-top: 40px;
     background: #eeeeee;
+    text-align: center;
 }
 
 .locations-section .image-row {
@@ -111,11 +112,15 @@ body { padding-top:0px; }
 .locations-section .right-col h4 {
     font-family: 'ZonaPro-Bold';
     text-align: center;
+    margin-top: 50px;
 }
 
 
 .locations-section .right-col img {
-    margin: 5px;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
     margin-bottom: 20px;
 }
 
