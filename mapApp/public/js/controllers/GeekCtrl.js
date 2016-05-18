@@ -79,6 +79,4 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope, $ti
   	// allow the dom to load
   	$timeout($scope.initialize(), 100);
 
-
-
 });

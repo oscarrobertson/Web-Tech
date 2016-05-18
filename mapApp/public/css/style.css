@@ -14,13 +14,16 @@ body { padding-top:0px; }
 
 .jumbo-custom {
     padding: 0px;
-    background: url(/imgs/backdropTitle.jpg) no-repeat 100%;
-    background-size: 100% 100%;
+    background: url(/imgs/mainBackgroundImage.png);
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .normal-map {
     padding: 0px;
-    background: #efefef;
+    background: #eeeeee;
 }
 
 .btn-primary {
@@ -31,30 +34,27 @@ body { padding-top:0px; }
 .navbar {
     min-height: 50px;
     border: none;
-    border-bottom: 1px solid white;
-    color: white;
-}
-
-.navbar-brand {
-    height: 53;
-    width: 220;
-    background: url(/imgs/titleNav.png);
+    border-bottom: 1px solid #6c6c6c;
 }
 
 .navbar-default {
-    background: transparent;
+    background: #eeeeee;
 }
 
 .navbar-default .navbar-nav>li>a {
-    color: white;
+    color: black;
+    font-family: 'ZonaPro-Bold';
+    font-size: 18px;
 }
 
 .navbar-default .navbar-brand {
-    color: transparent;
+    color: black;
+    font-family: 'ZonaPro-Bold';
+    font-size: 26px;
 }
 
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
-    color: transparent;
+    color: black;
 }
 
 .title-section {
@@ -64,13 +64,13 @@ body { padding-top:0px; }
 .title-section h1 {
     font-family: 'ZonaPro-Bold';
     font-size: 36px;
-    color: white;
+    color: black;
 }
 
 .title-section h4 {
     font-family: 'ZonaPro-Bold';
     font-size: 18px;
-    color: white;
+    color: black;
 }
 
 .title-buttons a {
@@ -84,10 +84,70 @@ body { padding-top:0px; }
     margin-bottom: 15px;
 }
 
-/* Images Page Styling */
+/* Locations Page Styling */
 
-.images-section {
+.locations-section {
+    font-family: sans-serif;
+    padding-top: 40px;
     background: #eeeeee;
+    text-align: center;
+}
+
+.locations-section .image-row {
+    margin-top: 20px;
+    margin-bottom: 80px;
+}
+
+.locations-section .image-footer {
+    text-align: center
+}
+
+.locations-section .image-footer p {
+    margin-bottom: 0;
+}
+
+.locations-section .image-footer a {
+    color: #ff0000;
+}
+
+.locations-section .left-col h3 {
+    font-family: 'ZonaPro-Bold';
+}
+
+.locations-section .right-col h4 {
+    font-family: 'ZonaPro-Bold';
+    text-align: center;
+    margin-top: 50px;
+}
+
+
+.locations-section .right-col img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin: 0 auto;
+    margin-bottom: 20px;
+}
+
+/* Footer Page Styling */
+
+.footer-section {
+    margin-top: 80px;
+}
+
+.footer-section .btn-primary {
+    margin: auto;
+}
+
+.footer-section a {
+    color: #6c6c6c;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.footer-section p {
+    color: #6c6c6c;
+    text-align: center;
 }
 
 /* Oscar's Styling */
@@ -152,6 +212,10 @@ body { padding-top:0px; }
 }
 
 .hover-start { 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     position:absolute; 
     z-index: 3;
     opacity: 1;
@@ -159,6 +223,10 @@ body { padding-top:0px; }
 } 
 
 .hover-end { 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
     position:absolute;
     z-index: 1;
     opacity: 0
@@ -192,7 +260,8 @@ body { padding-top:0px; }
 }
 
 #map-transition-uk {
-    height : 700px;
+    height : 500px;
     width : auto;
+    margin: auto;
     overflow: hidden;
 }
