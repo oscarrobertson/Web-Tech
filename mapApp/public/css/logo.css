@@ -9,6 +9,10 @@ src: url("ZonaPro-Bold.otf") format("opentype");
     transition: 1s;
 }
 
+#logo {
+	margin: auto;
+}
+
 #logo:hover #mountain_left {
 	transform: scale(1.05, 1.05);
 	-ms-transform: scale(1.05, 1.05);
@@ -63,7 +67,7 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 
 #logo {
 /*	maintain 4:9 ratio*/
-	height: 400px;
-	width: 900px;
+	height: 200px;
+	width: 450px;
 	
 }
