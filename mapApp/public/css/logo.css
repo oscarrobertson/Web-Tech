@@ -63,7 +63,7 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 
 #logo {
 /*	maintain 4:9 ratio*/
-	height: 400px;
 	width: 900px;
+	height: 400px;
 	
 }

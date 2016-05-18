@@ -128,3 +128,45 @@ body { padding-top:0px; }
     width: auto;
     min-width: 300px;   
 }
+
+.hover-start { 
+    position:absolute; 
+    z-index: 3;
+    opacity: 1;
+
+} 
+
+.hover-end { 
+    position:absolute; 
+    z-index: 1;
+    opacity: 0
+} 
+
+.hover-image-uk {
+/*    initial size 1338x2097*/
+    width : 70%;
+    height : auto;
+}
+
+.transition_three_sec {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    transition: 3s;
+}
+
+#map-transition-uk:hover .hover-start {
+    opacity: 0;
+    transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+}
+
+#map-transition-uk:hover .hover-end {
+    opacity: 1;
+    transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+}
+
+
+
