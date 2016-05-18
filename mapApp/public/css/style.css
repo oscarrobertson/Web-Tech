@@ -161,8 +161,8 @@ body { padding-top:0px; }
 
 .hover-image-uk {
 /*    initial size 1338x2097*/
-    width : 70%;
-    height : auto;
+    max-height: 100%;
+    max-width : 100%;
 }
 
 .transition_three_sec {
@@ -185,5 +185,8 @@ body { padding-top:0px; }
     -webkit-transition: opacity 1.5s;
 }
 
-
-
+#map-transition-uk {
+    height : 700px;
+    width : auto;
+    overflow: hidden;
+}
