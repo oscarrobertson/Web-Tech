@@ -154,7 +154,7 @@ body { padding-top:0px; }
 } 
 
 .hover-end { 
-    position:absolute; 
+    position:absolute;
     z-index: 1;
     opacity: 0
 } 
@@ -163,6 +163,7 @@ body { padding-top:0px; }
 /*    initial size 1338x2097*/
     max-height: 100%;
     max-width : 100%;
+    border-radius: 25px;
 }
 
 .transition_three_sec {
