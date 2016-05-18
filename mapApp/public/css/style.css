@@ -3,6 +3,11 @@ font-family: 'ZonaPro-Bold';
 src: url("ZonaPro-Bold.otf") format("opentype");
 }
 
+@font-face {
+font-family: 'ZonaPro-Thin';
+src: url("ZonaPro-Thin.otf") format("opentype");
+}
+
 body { padding-top:0px; }
 
 /* Title Page + Header Styling */
