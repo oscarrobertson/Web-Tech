@@ -5,14 +5,19 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 
 body { padding-top:0px; }
 
-.jumbotron {
+.jumbo-custom {
     padding: 0px;
-    background: url(/imgs/backdropTitle.jpg) no-repeat;
+    background: url(/imgs/backdropTitle.jpg) no-repeat 100%;
+    background-size: 100% 100%;
 }
 
 .normal-map {
     padding: 0px;
     background: #efefef;
+}
+
+.introduction {
+    margin: 0 auto;
 }
 
 .intro-buttons a {
