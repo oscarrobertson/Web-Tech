@@ -16,7 +16,7 @@ body { padding-top:0px; }
 #overlay {
 	position:absolute;
     z-index: 2;
-    top: 8%;
+    top: 60px;
     right: 0;
 }
 
