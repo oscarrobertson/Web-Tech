@@ -34,125 +34,26 @@
 
 </head>
 <body ng-app="sampleApp" ng-controller="NerdController">
-	
-	<!-- HEADER -->
-	<div class="navbar navbar-fixed-top">
-		<nav id="navigation-bar" role="navigation" class="navbar navbar-default navbar-static-top">
-			<div class="container-fluid">
-				<div class="navbar-header">
-					<button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-	                	<span class="sr-only">Toggle navigation</span>
-	                	<span class="icon-bar"></span>
-	               		<span class="icon-bar"></span>
-	                	<span class="icon-bar"></span>
-	            	</button>
-					<a class="navbar-brand" href="/">Terrain UK</a>
-				</div>
-				<div id="navbarCollapse" class="collapse navbar-collapse">
-					<ul class="nav navbar-nav">
-						<li><a href="/">Home</a></li>
-						<li><a href="/win2">Normal Map</a></li>
-						<li><a href="/win3">Depth Map</a></li>
-						<li><a href="/win4">Custom Generator</a></li>
-					</ul>
-					<ul class="nav navbar-nav navbar-right">
-	                	<li><a href="#myModal" data-toggle="modal" data-target="#myModal">Login</a></li>
-	            	</ul>
-				</div>
-			</div>
-		</nav>
-	</div>
-
-	<div id="myModal" class="modal fade" role="dialog">	
-		<div class="modal-dialog">
-
-	    <!-- Modal content-->
-		    <div class="modal-content">
-		     	<div class="modal-header">
-		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-		         	<h4 class="modal-title">Join Us Today!</h4>
-		     	</div>
-
-		      	<div class="modal-body">
-					<form class="form-horizontal" method="POST">
-						<fieldset>
-					    	<div id="legend">
-					      		<legend class="">Register</legend>
-					    	</div>
-					    	<div class="control-group">
-					      <!-- Username -->
-					      		<label class="control-label"  for="username">Username</label>
-					      		<div class="controls">
-					        		<input type="text" id="username" name="username" placeholder="" class="input-xlarge">
-					        		<p class="help-block">Username can contain any letters or numbers, without spaces</p>
-					     		 </div>
-					   		 </div>
-					 
-					    	<div class="control-group">
-					      <!-- E-mail -->
-					      		<label class="control-label" for="email">E-mail</label>
-					      		<div class="controls">
-					       			<input type="text" id="email" name="email" placeholder="" class="input-xlarge">
-					        		<p class="help-block">Please provide your E-mail</p>
-					      		</div>
-					    	</div>
-						 
-						    <div class="control-group">
-						      <!-- Password-->
-						      	<label class="control-label" for="password">Password</label>
-						      	<div class="controls">
-						       		 <input type="password" id="password" name="password" placeholder="" class="input-xlarge">
-						        	<p class="help-block">Password should be at least 4 characters</p>
-						      	</div>
-						    </div>
-						 
-						    <div class="control-group">
-						      <!-- Password -->
-						      	<label class="control-label"  for="password_confirm">Password (Confirm)</label>
-						      	<div class="controls">
-						       		 <input type="password" id="password_confirm" name="password_confirm" placeholder="" class="input-xlarge">
-						        	<p class="help-block">Please confirm password</p>
-						      	</div>
-						    </div>
-						 
-						    <div class="control-group">
-						      	<!-- Button -->
-						     	 <div class="controls">
-						        	<button class="btn btn-success">Register</button>
-						      	</div>
-						    </div>
-						</fieldset>
-					</form>
-				</div>
-
-				<div class="modal-footer">
-	        		<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-	      		</div>
-			</div>
-		</div>
-	</div>
-
 	<!-- ANGULAR DYNAMIC CONTENT VIEW-->
 	<div ng-view></div>
-
 
 	<div class="modal" class="modal fade loadingModal" id="loading-modal">
 		<div class="loading-svg-container">
 			<div class="rotating logo-piece" id="loading-icon-circle">
 				<svg width="100px" height="100px" viewBox="0 0 100 100">
-					<circle fill-opacity="0" stroke="#158C18" stroke-width="8" stroke-dasharray="11" cx="50" cy="50" r="45.057">
+					<circle fill-opacity="0" stroke="black" stroke-width="8" stroke-dasharray="11" cx="50" cy="50" r="45.057">
 					</circle>
 				</svg>
 			</div>
 			<div id="loading-icon-left" class="logo-piece scaling-down">
 				<svg width="100px" height="100px" viewBox="0 0 100 100">
-					<polygon fill="#158C18" stroke="#158C18" stroke-width="2" points="60,70 35,30 15,70">
+					<polygon fill="#eeeeee" points="60,70 35,30 15,70">
 					</polygon>
 				</svg>
 			</div>
 			<div id="loading-icon-right" class="logo-piece scaling-up">
 				<svg width="100px" height="100px" viewBox="0 0 100 100">
-					<polygon fill="#158C18" stroke="#158C18" stroke-width="2" points="40,70 85,70 65,40 ">
+					<polygon fill="#eeeeee" points="40,70 85,70 65,40 ">
 					</polygon>
 				</svg>
 			</div>

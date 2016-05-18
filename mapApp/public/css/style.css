@@ -1,4 +1,69 @@
+@font-face {
+font-family: 'ZonaPro-Bold';
+src: url("ZonaPro-Bold.otf") format("opentype");
+}
+
 body { padding-top:0px; }
+
+.jumbotron {
+    padding: 0px;
+    background: url(/imgs/backdropTitle.jpg) no-repeat;
+}
+
+.normal-map {
+    padding: 0px;
+    background: #efefef;
+}
+
+.intro-buttons a {
+    color: white;
+}
+
+.btn-primary {
+    background-color: #8f0c0c;
+    border-color: #8f0c0c;
+}
+
+.navbar {
+    min-height: 50px;
+    border: none;
+    border-bottom: 1px solid white;
+    color: white;
+}
+
+.navbar-brand {
+    height: 53;
+    width: 220;
+    background: url(/imgs/titleNav.png);
+}
+
+.navbar-default {
+    background: transparent;
+}
+
+.navbar-default .navbar-nav>li>a {
+    color: white;
+}
+
+.navbar-default .navbar-brand {
+    color: transparent;
+}
+
+.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+    color: transparent;
+}
+
+.introduction h1 {
+    font-family: 'ZonaPro-Bold';
+    font-size: 36px;
+    color: white;
+}
+
+.introduction h4 {
+    font-family: 'ZonaPro-Bold';
+    font-size: 18px;
+    color: white;
+}
 
 #map-canvas {
     background:white;
