@@ -17,10 +17,10 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 }
 
 #logo:hover #m_left_wrapper {	
-	-webkit-transform: translate(-40px, 0px);
-    -moz-transform: translate(-40px, 0px);
-    -ms-transform: translate(-40px, 0px);
-    transform: translate(-40px, 0px);
+	-webkit-transform: translate(-4%, 0%);
+    -moz-transform: translate(-4%, 0%);
+    -ms-transform: translate(-4%, 0%);
+    transform: translate(-4%, 0%);
 }
 
 #logo:hover #mountain_right {
@@ -31,10 +31,10 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 }
 
 #logo:hover #m_right_wrapper {	
-	-webkit-transform: translate(5px,0px);
-    -moz-transform: translate(5px,0px);
-    -ms-transform: translate(5px,0px);
-    transform: translate(5px,0px);
+	-webkit-transform: translate(.5%,0);
+    -moz-transform: translate(.5%,0);
+    -ms-transform: translate(.5%,0);
+    transform: translate(.5%,0);
 }
 
 #logo:hover #tagline {
@@ -45,10 +45,10 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 }
 
 #logo:hover #tagline_wrapper {	
-	-webkit-transform: translate(0,3em);
-    -moz-transform: translate(0,3em);
-    -ms-transform: translate(0,3em);
-    transform: translate(0,3em);
+	-webkit-transform: translate(0,10%);
+    -moz-transform: translate(0,10%);
+    -ms-transform: translate(0,10%);
+    transform: translate(0,10%);
 }
 
 #tagline {
