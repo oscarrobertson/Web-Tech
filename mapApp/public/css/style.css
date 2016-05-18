@@ -33,7 +33,7 @@ body { padding-top:0px; }
 }
 
 .navbar-default {
-    background: transparent;
+    background: #eeeeee;
 }
 
 .navbar-default .navbar-nav>li>a {
@@ -45,7 +45,7 @@ body { padding-top:0px; }
 .navbar-default .navbar-brand {
     color: black;
     font-family: 'ZonaPro-Bold';
-    font-size: 24px;
+    font-size: 26px;
 }
 
 .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
@@ -59,13 +59,13 @@ body { padding-top:0px; }
 .title-section h1 {
     font-family: 'ZonaPro-Bold';
     font-size: 36px;
-    color: #black;
+    color: black;
 }
 
 .title-section h4 {
     font-family: 'ZonaPro-Bold';
     font-size: 18px;
-    color: #black;
+    color: black;
 }
 
 .title-buttons a {
@@ -122,6 +122,27 @@ body { padding-top:0px; }
     margin-right: auto;
     margin: 0 auto;
     margin-bottom: 20px;
+}
+
+/* Footer Page Styling */
+
+.footer-section {
+    margin-top: 80px;
+}
+
+.footer-section .btn-primary {
+    margin: auto;
+}
+
+.footer-section a {
+    color: #6c6c6c;
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.footer-section p {
+    color: #6c6c6c;
+    text-align: center;
 }
 
 /* Oscar's Styling */
