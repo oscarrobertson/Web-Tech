@@ -1,13 +1,5 @@
 angular.module('GeekCtrl', []).controller('GeekController', function($scope, $timeout, $http, $q) {
 
-	$scope.tagline = 'Tagline to window 2';
-	$scope.squareSide = 27000;
-	$scope.squareBaseCoord = [400000,300000];
-	$scope.squareCoords = Array(4);
-	$scope.square = null;
-	$scope.dataLength = 1000;
-	$scope.ds = 500
-
   	$scope.initialize = function() {
   		var mapCanvas = document.getElementById('map-canvas');
   		if (mapCanvas == null){
@@ -15,11 +7,10 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope, $ti
   		}
   		var mapOptions = {
   			center: new google.maps.LatLng(30,-100),
-      		zoom: 5,
+      		zoom: 3,
     		mapTypeControl: false
     	}
   		var map = new google.maps.Map(mapCanvas,mapOptions);
-  		//$scope.squareCoords = makeSquareCoords();
   		
   		initHeightmapMapType();
 
@@ -49,21 +40,11 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope, $ti
 
 		HEIGHTMAP_MAPTYPE = new google.maps.ImageMapType({
 		getTileUrl : function(coord, zoom) {
-			// var scale = 1 << zoom;
-
 			var x = coord.x;
-	      	// if (x < 0 || x >= scale) return null;
 
 			var y = coord.y;
-	      	// if (y < 0 || y >= scale) return null;
-
-	      	//zoom = 0;
-	      	console.log('http://localhost:8080/api/mappng?z=' + zoom + '&x=' + x + '&y=' + y);
 
 	      	return 'http://localhost:8080/api/mappng?z=' + zoom + '&x=' + x + '&y=' + y ;
-	      	// console.log('http://localhost:8080/api/mappng?z=0&x=22&y=19');
-
-	      	// return 'http://localhost:8080/api/mappng?z=0&x=22&y=19';
 	        },
 		tileSize: new google.maps.Size(HEIGHTMAP_RANGE_X, HEIGHTMAP_RANGE_Y),
 	    isPng: true,
