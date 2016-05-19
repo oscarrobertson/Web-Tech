@@ -60,6 +60,19 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     margin: 0 auto;
 }
 
+.title-section #mapIconContainer {
+    position: relative;
+    max-height: 250;
+    max-width: 500;
+}
+
+.title-section #mapIconContainer img {
+    margin-top: 5%;
+    position: relative;
+    height: 50%;
+    width: 50%;
+}
+
 .title-section h1 {
     font-family: 'ZonaPro-Bold';
     font-size: 36px;
@@ -71,6 +84,7 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     font-size: 18px;
     color: black;
 }
+
 
 .title-buttons a {
     color: white;
@@ -201,17 +215,8 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     margin-top: 80px;
 }
 
-.footer-section .btn-primary {
-    margin: auto;
-}
-
-.footer-section a {
-    color: #6c6c6c;
-    background-color: transparent;
-    border-color: transparent;
-}
-
 .footer-section p {
+    font-family: 'ZonaPro-Thin';
     color: #6c6c6c;
     text-align: center;
 }
