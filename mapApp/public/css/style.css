@@ -272,9 +272,14 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     font-family: 'ZonaPro-Bold';
 }
 
+#overlay .export-btn {
+    margin: 5px;
+}
+
 #overlay .btn-group{
     border: 1px solid black;
     border-radius: 5px;
+    margin: 5px;
 }
 
 
@@ -344,6 +349,8 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     z-index: 15;
     top: 50%;
     left: 50%;
+    margin-top: -50px;
+    margin-left: -50px;
 }
 
 

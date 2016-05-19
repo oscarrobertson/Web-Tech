@@ -6,7 +6,7 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
 	$scope.squareCoords = null;
 	$scope.square = null;
 	$scope.dataLength = 1000;
-	$scope.ds = 500
+	$scope.ds = 800
 
 	$scope.doPlus = function() {
 		if ($scope.squareSide < 40000) {
@@ -28,14 +28,14 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
   	}
 
   	$scope.doPlusPx = function() {
-		if ($scope.ds < 800) {
+		if ($scope.ds < 1200) {
 	  		$scope.ds = $scope.ds + 100;
 	  		document.getElementById('output-size-display').innerHTML = $scope.ds + 'px';
 	  	}
 	}
 
 	$scope.doMinusPx = function() {
-  		if ($scope.ds > 300) {
+  		if ($scope.ds > 200) {
   			$scope.ds = $scope.ds - 100;
   			document.getElementById('output-size-display').innerHTML = $scope.ds + 'px';
   		}
