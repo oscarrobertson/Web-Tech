@@ -13,7 +13,8 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 /* Start of Page 2 Styling */
 /* ####################### */
 
-/* Title Page + Header Styling */
+
+/* Title Page + Header styling */
 
 .jumbo-custom {
     padding: 0px;
@@ -29,33 +30,29 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     border-color: #8f0c0c;
 }
 
-.jumbo-map {
-    background: transparent;
-}
-
-.navbar {
+.jumbo-custom .navbar {
     min-height: 50px;
     border: none;
     border-bottom: 1px solid #6c6c6c;
 }
 
-.navbar-default {
+.jumbo-custom .navbar-default {
     background: #eeeeee;
 }
 
-.navbar-default .navbar-nav>li>a {
+.jumbo-custom .navbar-default .navbar-nav>li>a {
     color: black;
     font-family: 'ZonaPro-Bold';
     font-size: 18px;
 }
 
-.navbar-default .navbar-brand {
+.jumbo-custom .navbar-default .navbar-brand {
     color: black;
     font-family: 'ZonaPro-Bold';
     font-size: 26px;
 }
 
-.navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
+.jumbo-custom .navbar-default .navbar-brand:focus, .navbar-default .navbar-brand:hover {
     color: black;
 }
 
@@ -80,12 +77,13 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 }
 
 
-/* Introduction Page Styling */
+/* Introduction Page styling */
 
 .introduction-section {
     font-family: 'ZonaPro-Thin';
     margin-bottom: 15px;
 }
+
 
 /* Animated Logo SVG styling (Core logo styling found in logo.css) */
 
@@ -93,6 +91,7 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     width: 100%;
     height: 100%;
 }
+
 
 /* UK Transition SVG styling */
 
@@ -150,7 +149,8 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     overflow: hidden;
 }
 
-/* Locations Page Styling */
+
+/* Locations Page styling */
 
 .locations-section {
     font-family: 'ZonaPro-Thin', sans-serif;
@@ -194,7 +194,8 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     margin-bottom: 20px;
 }
 
-/* Footer Page Styling */
+
+/* Footer Page styling */
 
 .footer-section {
     margin-top: 80px;
@@ -217,13 +218,24 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 
 
 /* ###################### */
-/* End of Page 1 Styling */
+/* End of Page 1 styling */
 /* ###################### */
 
 
 /* ####################### */
-/* Start of Page 2 Styling */
+/* Start of Page 2 styling */
 /* ####################### */
+
+
+/* Additional Navbar styling for Map pages */
+
+.jumbo-map {
+    background: transparent;
+}
+
+.jumbo-map .navbar-default {
+    margin-bottom: 0px;
+}
 
 
 /* Map styling */
@@ -250,8 +262,18 @@ src: url("ZonaPro-Thin.otf") format("opentype");
     right: 0;
 }
 
+#overlay .btn {
+    border: 1px solid black;
+    font-family: 'ZonaPro-Bold';
+}
 
-/* Modal Styling */
+#overlay .btn-group{
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+/* Modal styling */
 
 .modal-dialog{
     position: relative;

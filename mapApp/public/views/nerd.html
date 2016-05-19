@@ -20,18 +20,16 @@
 				</div>
 			</div>
 			<div id="overlay">
-				<div class="container-fluid">
-					<div class="btn-group" id="plusminusgroup" role="group">
-					  	<button type="button" class="btn btn-default customWidth" id="plusBtnPx" ng-click="doPlusPx()">+</button>
-						<button type="button" class="btn btn-default customWidth" id="minusBtnPx" ng-click="doMinusPx()">-</button>
-						<button type="button" class="btn btn-info" id='output-size-display' ng-click="resetOutput()">500px</span>
-					</div>
-					<div class="btn-group" id="plusminusgroup" role="group">
-					  	<button type="button" class="btn btn-default customWidth" id="plusBtn" ng-click="doPlus()">+</button>
-						<button type="button" class="btn btn-default customWidth" id="minusBtn" ng-click="doMinus()">-</button>
-						<button type="button" class="btn btn-info" id='square-size-display' ng-click="resetSquare()">27km</span>
-					</div>
-					<button type="button" class="btn btn-default" id="export" ng-click="doExport()">Export Map</button>
+				<button type="button" class="btn btn-default pull-right" id="export" ng-click="doExport()">Export Map</button>
+				<div class="btn-group pull-right" id="plusminusgroup" role="group">
+				  	<button type="button" class="btn btn-default customWidth" id="plusBtnPx" ng-click="doPlusPx()">+</button>
+					<button type="button" class="btn btn-default customWidth" id="minusBtnPx" ng-click="doMinusPx()">-</button>
+					<button type="button" class="btn btn-info" id='output-size-display' ng-click="resetOutput()">500px</span>
+				</div>
+				<div class="btn-group pull-right" id="plusminusgroup" role="group">
+				  	<button type="button" class="btn btn-default customWidth" id="plusBtn" ng-click="doPlus()">+</button>
+					<button type="button" class="btn btn-default customWidth" id="minusBtn" ng-click="doMinus()">-</button>
+					<button type="button" class="btn btn-info" id='square-size-display' ng-click="resetSquare()">27km</span>
 				</div>
 			</div>
 		</div>
