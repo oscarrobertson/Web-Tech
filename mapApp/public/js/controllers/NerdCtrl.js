@@ -114,7 +114,8 @@ angular.module('NerdCtrl', []).controller('NerdController', function($scope, $ti
   		var mapOptions = {
   			center: new google.maps.LatLng(53.223668,-1.102773),
       		zoom: 6,
-      		mapTypeId: google.maps.MapTypeId.ROADMAP
+      		mapTypeId: google.maps.MapTypeId.ROADMAP,
+      		disableDefaultUI: true
     	}
   		var map = new google.maps.Map(mapCanvas,mapOptions);
   		//$scope.squareCoords = makeSquareCoords();

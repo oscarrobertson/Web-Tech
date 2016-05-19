@@ -8,7 +8,8 @@ angular.module('GeekCtrl', []).controller('GeekController', function($scope, $ti
   		var mapOptions = {
   			center: new google.maps.LatLng(30,-100),
       		zoom: 3,
-    		mapTypeControl: false
+    		mapTypeControl: false,
+    		disableDefaultUI: true
     	}
   		var map = new google.maps.Map(mapCanvas,mapOptions);
   		

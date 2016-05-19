@@ -8,7 +8,10 @@ font-family: 'ZonaPro-Thin';
 src: url("ZonaPro-Thin.otf") format("opentype");
 }
 
-body { padding-top:0px; }
+
+/* ####################### */
+/* Start of Page 2 Styling */
+/* ####################### */
 
 /* Title Page + Header Styling */
 
@@ -21,14 +24,13 @@ body { padding-top:0px; }
     background-size: cover;
 }
 
-.normal-map {
-    padding: 0px;
-    background: #eeeeee;
-}
-
-.btn-primary {
+.jumbo-custom .btn-primary {
     background-color: #8f0c0c;
     border-color: #8f0c0c;
+}
+
+.jumbo-map {
+    background: transparent;
 }
 
 .navbar {
@@ -68,7 +70,7 @@ body { padding-top:0px; }
 }
 
 .title-section h4 {
-    font-family: 'ZonaPro-Bold';
+    font-family: 'ZonaPro-Thin';
     font-size: 18px;
     color: black;
 }
@@ -81,13 +83,77 @@ body { padding-top:0px; }
 /* Introduction Page Styling */
 
 .introduction-section {
+    font-family: 'ZonaPro-Thin';
     margin-bottom: 15px;
+}
+
+/* Animated Logo SVG styling (Core logo styling found in logo.css) */
+
+#logo {
+    width: 100%;
+    height: 100%;
+}
+
+/* UK Transition SVG styling */
+
+.hover-start { 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position:absolute; 
+    z-index: 3;
+    opacity: 1;
+
+} 
+
+.hover-end { 
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    position:absolute;
+    z-index: 1;
+    opacity: 0
+} 
+
+.hover-image-uk {
+    max-height: 100%;
+    max-width : 100%;
+    border-radius: 25px;
+}
+
+.transition_three_sec {
+    -webkit-transition: 3s;
+    -moz-transition: 3s;
+    transition: 3s;
+}
+
+#map-transition-uk:hover .hover-start {
+    opacity: 0;
+    transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+}
+
+#map-transition-uk:hover .hover-end {
+    opacity: 1;
+    transition: opacity 1.5s;
+    -moz-transition: opacity 1.5s;
+    -webkit-transition: opacity 1.5s;
+}
+
+#map-transition-uk {
+    height : 500px;
+    width : auto;
+    margin: auto;
+    overflow: hidden;
 }
 
 /* Locations Page Styling */
 
 .locations-section {
-    font-family: sans-serif;
+    font-family: 'ZonaPro-Thin', sans-serif;
     padding-top: 40px;
     background: #eeeeee;
     text-align: center;
@@ -120,7 +186,6 @@ body { padding-top:0px; }
     margin-top: 50px;
 }
 
-
 .locations-section .right-col img {
     display: block;
     margin-left: auto;
@@ -150,7 +215,18 @@ body { padding-top:0px; }
     text-align: center;
 }
 
-/* Oscar's Styling */
+
+/* ###################### */
+/* End of Page 1 Styling */
+/* ###################### */
+
+
+/* ####################### */
+/* Start of Page 2 Styling */
+/* ####################### */
+
+
+/* Map styling */
 
 #map-canvas {
     background:white;
@@ -161,25 +237,66 @@ body { padding-top:0px; }
     top:0;
     left:0;
     right:0;
-    margin-top:50px; /* adjust top margin to your header height */
-    z-index: 1;
+    z-index: -1;
 }
 
+
+/* Map Interaction UI styling */
+
 #overlay {
-	position:absolute;
+	position:relative;
     z-index: 2;
-    top: 60px;
+    top: 0px;
     right: 0;
 }
 
-#logo {
-    width: 100%;
-    height: 100%;
+
+/* Modal Styling */
+
+.modal-dialog{
+    position: relative;
+    display: table; //This is important 
+    overflow-y: auto;    
+    overflow-x: auto;
+    width: auto;
+    min-width: 300px;   
 }
 
-#navigation-bar {
-    margin-bottom: 0px; 
+.modal-custom {
+    font-family: 'ZonaPro-Thin';
 }
+
+.modal-custom .modal-content {
+    background-color: #eeeeee;
+    border-radius: 15px;
+}
+
+.modal-custom .modal-header {
+    background-color: #eeeeee;
+    font-size: 24px;
+    border-radius: 15px;
+    color: black;
+}
+
+.modal-custom #img-container {
+    position: relative;
+    max-height: 500px;
+    max-width: 500px;
+}
+
+.modal-custom #img-container img {
+    position: relative;
+    height: 100%;
+    width: 100%;
+}
+
+.modal-custom #modal-instructions {
+    margin-top: 5%;
+    text-align: center;
+}
+
+
+/* Loading Modal SVG styling */
 
 .loadingModal {
     display:    none;
@@ -202,66 +319,7 @@ body { padding-top:0px; }
     left: 50%;
 }
 
-.modal-dialog{
-    position: relative;
-    display: table; //This is important 
-    overflow-y: auto;    
-    overflow-x: auto;
-    width: auto;
-    min-width: 300px;   
-}
 
-.hover-start { 
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    position:absolute; 
-    z-index: 3;
-    opacity: 1;
-
-} 
-
-.hover-end { 
-    left: 0;
-    right: 0;
-    margin-left: auto;
-    margin-right: auto;
-    position:absolute;
-    z-index: 1;
-    opacity: 0
-} 
-
-.hover-image-uk {
-/*    initial size 1338x2097*/
-    max-height: 100%;
-    max-width : 100%;
-    border-radius: 25px;
-}
-
-.transition_three_sec {
-    -webkit-transition: 3s;
-    -moz-transition: 3s;
-    transition: 3s;
-}
-
-#map-transition-uk:hover .hover-start {
-    opacity: 0;
-    transition: opacity 1.5s;
-    -moz-transition: opacity 1.5s;
-    -webkit-transition: opacity 1.5s;
-}
-
-#map-transition-uk:hover .hover-end {
-    opacity: 1;
-    transition: opacity 1.5s;
-    -moz-transition: opacity 1.5s;
-    -webkit-transition: opacity 1.5s;
-}
-
-#map-transition-uk {
-    height : 500px;
-    width : auto;
-    margin: auto;
-    overflow: hidden;
-}
+/* ###################### */
+/* End of Page 2 Styling */
+/* ###################### */

@@ -1,5 +1,5 @@
 <!-- <div class="jumbotron text-center"> -->
-	<div class="jumbotron normal-map">
+	<div class="jumbotron jumbo-custom jumbo-map">
 		<div class="container">
 			<div class="navbar navbar-default">
 				<div class="navbar-header">
@@ -19,40 +19,43 @@
 					</ul>
 				</div>
 			</div>
-		</div>
-	</div>
-
-	<div id="overlay">
-		<div class="container-fluid">
-			<div class="btn-group" id="plusminusgroup" role="group">
-			  	<button type="button" class="btn btn-default customWidth" id="plusBtnPx" ng-click="doPlusPx()">+</button>
-				<button type="button" class="btn btn-default customWidth" id="minusBtnPx" ng-click="doMinusPx()">-</button>
-				<button type="button" class="btn btn-info" id='output-size-display' ng-click="resetOutput()">500px</span>
+			<div id="overlay">
+				<div class="container-fluid">
+					<div class="btn-group" id="plusminusgroup" role="group">
+					  	<button type="button" class="btn btn-default customWidth" id="plusBtnPx" ng-click="doPlusPx()">+</button>
+						<button type="button" class="btn btn-default customWidth" id="minusBtnPx" ng-click="doMinusPx()">-</button>
+						<button type="button" class="btn btn-info" id='output-size-display' ng-click="resetOutput()">500px</span>
+					</div>
+					<div class="btn-group" id="plusminusgroup" role="group">
+					  	<button type="button" class="btn btn-default customWidth" id="plusBtn" ng-click="doPlus()">+</button>
+						<button type="button" class="btn btn-default customWidth" id="minusBtn" ng-click="doMinus()">-</button>
+						<button type="button" class="btn btn-info" id='square-size-display' ng-click="resetSquare()">27km</span>
+					</div>
+					<button type="button" class="btn btn-default" id="export" ng-click="doExport()">Export Map</button>
+				</div>
 			</div>
-			<div class="btn-group" id="plusminusgroup" role="group">
-			  	<button type="button" class="btn btn-default customWidth" id="plusBtn" ng-click="doPlus()">+</button>
-				<button type="button" class="btn btn-default customWidth" id="minusBtn" ng-click="doMinus()">-</button>
-				<button type="button" class="btn btn-info" id='square-size-display' ng-click="resetSquare()">27km</span>
-			</div>
-			<button type="button" class="btn btn-default" id="export" ng-click="doExport()">Export Map</button>
 		</div>
 	</div>
 
 	<div id='map-canvas'></div>
 
 	<div id="image_modal" class="modal fade" role="dialog">	
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-custom">
 
 	    <!-- Modal content-->
 		    <div class="modal-content">
 		     	<div class="modal-header">
 		        	<button type="button" class="close" data-dismiss="modal">&times;</button>
-		         	<h4 class="modal-title">Depth Map</h4>
+		         	<h4>Your Depth Map</h4>
 		     	</div>
 
 		      	<div class="modal-body">
-					<div id="img-wrapper">
-						<img id="i" src="" width="{{dataLength}}" height="{{dataLength}}" style="display:none" />
+					<div id="img-container">
+						<img id="i" src="" />
+					</div>
+					<div id="modal-instructions">
+						<p> Image Size: {{dataLength}} x {{dataLength}} </p>
+						<p> Right-click on the image and select 'Save image as..' </p>
 					</div>
 				</div>
 
