@@ -19,10 +19,31 @@ app.use(bodyParser.json({ type: 'application/vnd.api+json' })); // parse applica
 app.use(bodyParser.urlencoded({ extended: true })); // parse application/x-www-form-urlencoded
 
 app.use(methodOverride('X-HTTP-Method-Override')); // override with the X-HTTP-Method-Override header in the request. simulate DELETE/PUT
-app.use(express.static(__dirname + '/public')); // set the static files location /public/img will be /img for users
+
+app.use(negotiate)
+app.use(express.static(__dirname + '/public', {setHeaders: deliverXHTML})); // set the static files location /public/img will be /img for users
 
 // routes ==================================================
 require('./app/routes')(app); // pass our application into our routes
+
+// Content negotiation functions
+// Check whether the browser accepts XHTML, and record it in the response.
+function negotiate(req, res, next){
+	var accepts = req.headers.accept.split(",");
+	if(accepts.indexOf("application/xhtml+xml") >= 0) res.acceptsXHTML = true;
+	next();
+}
+
+// Called by express.static. Delivers response as XHTML when appropriate.
+function deliverXHTML(res, path, stat){
+	if(ends(path, '.html') && res.acceptsXHTML) {
+		res.header("Content-Type", "application/xhtml+xml");
+	}
+}
+
+function ends(s, x) {
+	return s.indexOf(x, s.length-x.length) >= 0;
+}
 
 // start app ===============================================
 app.listen(port, '0.0.0.0');	
