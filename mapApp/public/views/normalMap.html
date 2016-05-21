@@ -1,4 +1,4 @@
-<!-- <div class="jumbotron text-center"> -->
+	<!-- <div class="jumbotron text-center"> -->
 	<div class="jumbotron jumbo-custom jumbo-map">
 		<div class="container">
 			<div class="navbar navbar-default">
@@ -20,16 +20,16 @@
 				</div>
 			</div>
 			<div id="overlay">
-				<button type="button" class="btn btn-default pull-right export-btn" id="export" ng-click="doExport()">Export Map</button>
-				<div class="btn-group pull-right" id="plusminusgroup" role="group">
-				  	<button type="button" class="btn btn-default customWidth" id="plusBtnPx" ng-click="doPlusPx()">+</button>
-					<button type="button" class="btn btn-default customWidth" id="minusBtnPx" ng-click="doMinusPx()">-</button>
-					<button type="button" class="btn btn-info" id='output-size-display' ng-click="resetOutput()">800px</span>
+				<button type="button" class="btn btn-default pull-right export-btn" id="export" data-ng-click="doExport()">Export Map</button>
+				<div class="btn-group pull-right" role="group">
+				  	<button type="button" class="btn btn-default customWidth" id="plusBtnPx" data-ng-click="doPlusPx()">+</button>
+					<button type="button" class="btn btn-default customWidth" id="minusBtnPx" data-ng-click="doMinusPx()">-</button>
+					<button type="button" class="btn btn-info" id='output-size-display' data-ng-click="resetOutput()">800px</button>
 				</div>
-				<div class="btn-group pull-right" id="plusminusgroup" role="group">
-				  	<button type="button" class="btn btn-default customWidth" id="plusBtn" ng-click="doPlus()">+</button>
-					<button type="button" class="btn btn-default customWidth" id="minusBtn" ng-click="doMinus()">-</button>
-					<button type="button" class="btn btn-info" id='square-size-display' ng-click="resetSquare()">27km</span>
+				<div class="btn-group pull-right" role="group">
+				  	<button type="button" class="btn btn-default customWidth" id="plusBtn" data-ng-click="doPlus()">+</button>
+					<button type="button" class="btn btn-default customWidth" id="minusBtn" data-ng-click="doMinus()">-</button>
+					<button type="button" class="btn btn-info" id='square-size-display' data-ng-click="resetSquare()">27km</button>
 				</div>
 			</div>
 		</div>
@@ -49,7 +49,7 @@
 
 		      	<div class="modal-body">
 					<div id="img-container">
-						<img id="i" src="" />
+						<img id="i" src="imgs/londonIcon.jpg" alt="" />
 					</div>
 					<div id="modal-instructions">
 						<p> Image Size: {{dataLength}} x {{dataLength}} </p>

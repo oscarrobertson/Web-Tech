@@ -9,19 +9,14 @@ angular.module('appRoutes', []).config(['$routeProvider', '$locationProvider', f
 		})
 
 		.when('/win2', {
-			templateUrl: 'views/nerd.html',
-			controller: 'NerdController'
+			templateUrl: 'views/normalMap.html',
+			controller: 'NormalMapController'
 		})
 
 		.when('/win3', {
-			templateUrl: 'views/geek.html',
-			controller: 'GeekController'	
+			templateUrl: 'views/depthMap.html',
+			controller: 'DepthMapController'	
 		})
-
-		.when('/win4', {
-			templateUrl: 'views/main.html',
-			controller: 'MainController'
-		});
 
 	$locationProvider.html5Mode(true);
 

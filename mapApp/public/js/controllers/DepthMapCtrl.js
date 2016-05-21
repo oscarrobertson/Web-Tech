@@ -1,4 +1,4 @@
-angular.module('GeekCtrl', []).controller('GeekController', function($scope, $timeout, $http, $q) {
+angular.module('DepthMapCtrl', []).controller('DepthMapController', function($scope, $timeout, $http, $q) {
 
   	$scope.initialize = function() {
   		var mapCanvas = document.getElementById('map-canvas');

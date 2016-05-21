@@ -1,4 +1,4 @@
-angular.module('NerdCtrl', []).controller('NerdController', function($scope, $timeout, $http, $q) {
+angular.module('NormalMapCtrl', []).controller('NormalMapController', function($scope, $timeout, $http, $q) {
 
 	$scope.tagline = 'Tagline to window 2';
 	$scope.squareSide = 27000;
