@@ -26,5 +26,5 @@ require('./app/routes')(app); // pass our application into our routes
 
 // start app ===============================================
 app.listen(port, '0.0.0.0');	
-console.log('Magic happens on port ' + port); 			// shoutout to the user
+console.log('Port: ' + port); 			// shoutout to the user
 exports = module.exports = app; 						// expose app
