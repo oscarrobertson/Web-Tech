@@ -10,9 +10,8 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 
 
 /* ####################### */
-/* Start of Page 2 Styling */
+/* Start of Page 1 Styling */
 /* ####################### */
-
 
 /* Title Page + Header styling */
 
@@ -42,13 +41,13 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 
 .jumbo-custom .navbar-default .navbar-nav>li>a {
     color: black;
-    font-family: 'ZonaPro-Bold';
+    font-family: 'ZonaPro-Bold', Helvetica, sans-serif;
     font-size: 18px;
 }
 
 .jumbo-custom .navbar-default .navbar-brand {
     color: black;
-    font-family: 'ZonaPro-Bold';
+    font-family: 'ZonaPro-Bold', Helvetica, sans-serif;
     font-size: 26px;
 }
 
@@ -62,8 +61,6 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 
 .title-section #mapIconContainer {
     position: relative;
-    max-height: 250;
-    max-width: 500;
 }
 
 .title-section #mapIconContainer img {
@@ -74,13 +71,13 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 }
 
 .title-section h1 {
-    font-family: 'ZonaPro-Bold';
+    font-family: 'ZonaPro-Bold', Helvetica, sans-serif;
     font-size: 36px;
     color: black;
 }
 
-.title-section h4 {
-    font-family: 'ZonaPro-Thin';
+.title-section h2 {
+    font-family: 'ZonaPro-Thin', Helvetica, sans-serif;
     font-size: 18px;
     color: black;
 }
@@ -94,16 +91,8 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 /* Introduction Page styling */
 
 .introduction-section {
-    font-family: 'ZonaPro-Thin';
+    font-family: 'ZonaPro-Thin', Helvetica, sans-serif;
     margin-bottom: 15px;
-}
-
-
-/* Animated Logo SVG styling (Core logo styling found in logo.css) */
-
-#logo {
-    width: 100%;
-    height: 100%;
 }
 
 
@@ -167,7 +156,7 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 /* Locations Page styling */
 
 .locations-section {
-    font-family: 'ZonaPro-Thin', sans-serif;
+    font-family: 'ZonaPro-Thin', Helvetica, sans-serif;
     padding-top: 40px;
     background: #eeeeee;
     text-align: center;
@@ -191,11 +180,11 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 }
 
 .locations-section .left-col h3 {
-    font-family: 'ZonaPro-Bold';
+    font-family: 'ZonaPro-Bold', Helvetica, sans-serif;
 }
 
 .locations-section .right-col h4 {
-    font-family: 'ZonaPro-Bold';
+    font-family: 'ZonaPro-Bold', Helvetica, sans-serif;
     text-align: center;
     margin-top: 50px;
 }
@@ -216,7 +205,7 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 }
 
 .footer-section p {
-    font-family: 'ZonaPro-Thin';
+    font-family: 'ZonaPro-Thin', Helvetica, sans-serif;
     color: #6c6c6c;
     text-align: center;
 }
@@ -269,7 +258,7 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 
 #overlay .btn {
     border: 1px solid black;
-    font-family: 'ZonaPro-Bold';
+    font-family: 'ZonaPro-Bold', Helvetica, sans-serif;
 }
 
 #overlay .export-btn {
@@ -287,7 +276,7 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 
 .modal-dialog{
     position: relative;
-    display: table; //This is important 
+    display: table;
     overflow-y: auto;    
     overflow-x: auto;
     width: auto;
@@ -295,7 +284,11 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 }
 
 .modal-custom {
-    font-family: 'ZonaPro-Thin';
+    font-family: 'ZonaPro-Thin', Helvetica, sans-serif;
+}
+
+.modal-custom h1 {
+    font-size: 16px;
 }
 
 .modal-custom .modal-content {
@@ -312,14 +305,16 @@ src: url("ZonaPro-Thin.otf") format("opentype");
 
 .modal-custom #img-container {
     position: relative;
-    max-height: 500px;
-    max-width: 500px;
+    max-height: 80%;
+    max-width: 100%;
 }
 
 .modal-custom #img-container img {
     position: relative;
-    height: 100%;
-    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    height: 70%;
+    width: 70%;
 }
 
 .modal-custom #modal-instructions {

@@ -11,6 +11,8 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 
 #logo {
 	margin: auto;
+	height: 200px;
+	width: 450px;
 }
 
 #logo:hover #mountain_left {
@@ -65,9 +67,3 @@ src: url("ZonaPro-Bold.otf") format("opentype");
 	width: inherit;
 }
 
-#logo {
-/*	maintain 4:9 ratio*/
-	height: 200px;
-	width: 450px;
-	
-}
