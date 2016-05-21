@@ -2,7 +2,9 @@ This readme outlines features or areas of attempted development of the project t
 
 ## BACKEND ##
 
-The largest amount of work on the backend has been the implementation of the mapMaker module. This is the module that is able to take in coordinates of areas of the UK and output an array representing the region's terrain using free data (~3000 ascii files for the whole UK mainland) provided by Ordnance Survey. The height data is rescaled so that the heighest point in the UK is set to white on a PNG image and the lowest point is set to black. This module is also able to resize the output array to any size, larger or smaller (though clearly creation of a larger image results in estimation of data points) meaning that output PNG images can be created for any desired size. Currently the module only works for square regions but the next step is to implement rectangular region calculations.
+The largest amount of work on the backend has been the implementation of the mapMaker module. This is the module that is able to take in coordinates of areas of the UK and output an array representing the region's terrain using free data (~3000 ascii files for the whole UK mainland) provided by Ordnance Survey. The height data is rescaled so that the heighest point in the UK is set to white on a PNG image and the lowest point is set to black. This module is also able to resize the output array to any size, larger or smaller (though clearly creation of a larger image results in estimation of data points) meaning that output PNG images can be created for any desired size. 
+
+This module also contains around 7000 200x200 pngs used to create the navigatable depth map seen on the website. These images were created by a python script whcih would repeatedly make calls to our node server api and create a well structured folder layout in which the images are stored.
 
 The other module implemented in the modules folder is the conv module. This is not our code but is MIT licensed and available for free online. This module provides calculations for geocoding, specifically for this project we use it to convert between the coordinate system used by mapping APIs (latitude and longitude) to the coordinate system used by the OS map data (Easting and Northing). We included this code to avoid having to make use of commercial geocoding APIs like those provided by Google and OS maps since these need to be paid for at a certain number of requests and we do not need the majority of the large range of services they provide.
 
@@ -18,7 +20,7 @@ Both of the above modules are tightly linked to the backend API calls (all calls
 
 	/osGridToLatLonSquare	-	Takes in square coordinates in northing and easting format and generates the latitude and longitude coordinates of each of the corners of the square. This call is useful for the frontend as it means only making one API call rather than four.
 
-The rest of the server is a stack using Node.js, Express and Angular. We have yet to set up a database but plan to use MongoDB or SQLite.
+The rest of the server is a stack using Node.js, Express and Angular. We chose to use express because it added simple routing and support for various easily added middleware. Express massively reduced the amount of code we needed to write which let us focus on building a better product, it also contatined graceful error handling which allowed our server not to crash upon experiencing errors.
 
 ## FRONTEND ##
 
@@ -31,3 +33,8 @@ The "Normal Map" page lets a user drag and resize a square around a map to selec
 Note that the red square on the page, even though it is defined square in Northing Easting coordinates, is skewed and changes shape as it is dragged around. This is because to be presented on the map it must be converted to latitude and longitude coordinates and the difference in coordinate systems is displayed in the shape of the square.
 
 The large number of API calls made by this page also means that a large amount of the code ends up being quite complex due to the need to deal with asynchronicity. This was achieved by using the angular construct of promises which took some time to learn about.
+
+
+We make use of SVG elements on our homepage in our logo. This logo was initially designed as a png image in GIMP but we decided to recreate it as an SVG image to allow scaling to any resolution as well as logo animation. Note that when the mouse cursor is hovered on the logo many elements move independently. We tried to implement this in various ways and ran into a number of problems. Initially we planned to animate SVG images using the built in SMIL animation, but this proved problematic for linking with events and browers raised depreciated warnings. We eventually settled on using CSS3 animations which, when implemented properly, worked on all browsers but for microsoft browers. This was due to the fact that edge and ie will not perform animations on SVG elements. To fix this we had to split the single SVG image into a group of divs with each independently moving element as it's own image. We also made use of CSS3 animations on the transitioning map image on the homepage, as well as the loading icon when a map image is created on the second page.
+
+The "Depth Map" page allows you to navigate the full resoltuion imagery of the UK that we have created using the depth map ascii data provided by OS Maps. The map was implemented using Google Maps API with our own custom tiling. We were unfortunately unable to integrate our map with the Google Maps road map due to the difference in coordinate systems. 
